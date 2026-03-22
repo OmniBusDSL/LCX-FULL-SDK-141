@@ -59,6 +59,14 @@ class LCXWebSocketTester:
         self.results['total'] += 1
         uri = f"{self.ws_url}{endpoint}"
 
+        # Determine subscription type from endpoint
+        type_map = {
+            '/subscribeTicker': 'ticker',
+            '/subscribeOrderbook': 'orderbook',
+            '/subscribeTrade': 'trade'
+        }
+        sub_type = type_map.get(endpoint, 'ticker')
+
         print(f"\n📡 Testing: {name}")
         print(f"   Endpoint: {endpoint}")
         print(f"   URL: {uri}")
@@ -67,12 +75,26 @@ class LCXWebSocketTester:
             async with websockets.connect(uri) as websocket:
                 print(f"✅ Connected to {name}")
 
+                # Send subscription message
+                subscribe_msg = {
+                    "Topic": "subscribe",
+                    "Type": sub_type
+                }
+                await websocket.send(json.dumps(subscribe_msg))
+                print(f"   📤 Sent subscription: {json.dumps(subscribe_msg)}")
+
                 # Listen for messages for specified duration
                 start_time = time.time()
                 message_count = 0
+                last_ping = time.time()
 
                 while time.time() - start_time < duration:
                     try:
+                        # Send ping every 60 seconds to keep connection alive
+                        if time.time() - last_ping > 60:
+                            await websocket.send(json.dumps({"action": "ping"}))
+                            last_ping = time.time()
+
                         # Wait for message with timeout
                         message = await asyncio.wait_for(
                             websocket.recv(),
