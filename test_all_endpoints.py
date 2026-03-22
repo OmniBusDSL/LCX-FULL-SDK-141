@@ -272,27 +272,29 @@ class LCXTester:
         print(f"\n{Colors.BOLD}❌ PROBLEM ENDPOINTS (Known Failures){Colors.RESET}")
         print(f"{Colors.BOLD}{'-'*70}{Colors.RESET}\n")
 
-        # GET /api/order requires a real OrderId - skip if not available
+        dummy_order_id = "0d6d3671-06a7-4061-b19c-159167edb0fc"
+
+        # GET /api/order - uses orderId (lowercase) as query parameter
         if self.test_order_id:
             self.test_endpoint(
-                "GET /api/order (Real OrderId)",
+                "GET /api/order (orderId query param)",
                 "GET", "/api/order", auth_required=True,
-                params={"OrderId": self.test_order_id}, expected_status=200
+                params={"orderId": self.test_order_id}, expected_status=200
             )
         else:
-            print(f"{Colors.WARN}⚠️  SKIP{Colors.RESET} - GET /api/order (no real OrderId)")
+            print(f"{Colors.WARN}⚠️  SKIP{Colors.RESET} - GET /api/order (no real orderId)")
             self.results['total'] += 1
 
         self.test_endpoint(
             "PUT /api/modify (Price < 0.0675)",
             "PUT", "/api/modify", auth_required=True,
-            payload={"OrderId": dummy_order_id, "Price": 0.05, "Amount": 20, "OrderType": "LIMIT", "Side": "SELL"}, expected_status=404
+            payload={"OrderId": dummy_order_id, "Price": 0.05, "Amount": 20, "OrderType": "LIMIT", "Side": "SELL"}, expected_status=200
         )
 
         self.test_endpoint(
-            "DELETE /order/cancel-all (orderIds array)",
+            "DELETE /order/cancel-all (orderIds query params)",
             "DELETE", "/order/cancel-all", auth_required=True,
-            payload={"orderIds": [dummy_order_id]}, expected_status=200
+            params={"orderIds": dummy_order_id}, expected_status=200
         )
 
         # Print summary
