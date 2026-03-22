@@ -1,0 +1,70 @@
+import okhttp3.*
+import com.google.gson.*
+import kotlinx.coroutines.*
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+import java.util.*
+
+
+suspend fun fetch_all_pairs_data(pair): Map<String, Any> {
+    // GET /api/ticker
+    val url = "https://exchange-api.lcx.com/api/ticker"
+    val client = OkHttpClient()
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        println(body)
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+# Workflow: FetchAllPairsData (sequence)
+
+suspend fun get_ethusdc_ticker(pair): Map<String, Any> {
+    // GET /api/ticker
+    val url = "https://exchange-api.lcx.com/api/ticker"
+    val client = OkHttpClient()
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        println(body)
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_lcxusdc_ticker(pair): Map<String, Any> {
+    // GET /api/ticker
+    val url = "https://exchange-api.lcx.com/api/ticker"
+    val client = OkHttpClient()
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        println(body)
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+

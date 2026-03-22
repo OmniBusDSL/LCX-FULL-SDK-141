@@ -1,0 +1,113 @@
+; x86-64 Assembly
+
+# POST method not supported for assembly
+# POST method not supported for assembly
+# POST method not supported for assembly
+# PUT method not supported for assembly
+# PUT method not supported for assembly
+# PUT method not supported for assembly
+# DELETE method not supported for assembly
+# DELETE method not supported for assembly
+section .text
+  global get_all_open_orders
+get_all_open_orders:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_open_orders_for_pair
+get_open_orders_for_pair:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_open_orders_with_date_range
+get_open_orders_with_date_range:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_single_order_status
+get_single_order_status:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_complete_order_history
+get_complete_order_history:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_order_history_for_pair
+get_order_history_for_pair:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_order_history_by_status
+get_order_history_by_status:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_order_history_by_type
+get_order_history_by_type:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_filtered_order_history
+get_filtered_order_history:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_all_trade_history
+get_all_trade_history:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_trade_history_for_pair
+get_trade_history_for_pair:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_trade_history_by_date_range
+get_trade_history_by_date_range:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global simple_buy_workflow
+simple_buy_workflow:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+# Workflow: SimpleBuyWorkflow (sequence)
+
+# None method not supported for assembly
+# PUT method not supported for assembly
+section .text
+  global get_history
+get_history:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_trades
+get_trades:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+# None method not supported for assembly
+# DELETE method not supported for assembly
+section .text
+  global confirm_cancelled
+confirm_cancelled:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+# None method not supported for assembly

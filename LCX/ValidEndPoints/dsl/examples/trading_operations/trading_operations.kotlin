@@ -1,0 +1,435 @@
+import okhttp3.*
+import com.google.gson.*
+import kotlinx.coroutines.*
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+import java.util.*
+
+
+# POST method not supported for kotlin
+# POST method not supported for kotlin
+# POST method not supported for kotlin
+# PUT method not supported for kotlin
+# PUT method not supported for kotlin
+# PUT method not supported for kotlin
+# DELETE method not supported for kotlin
+# DELETE method not supported for kotlin
+suspend fun get_all_open_orders(offset): Map<String, Any> {
+    // GET /api/open
+    val url = "https://exchange-api.lcx.com/api/open"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/open"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_open_orders_for_pair(offset, pair): Map<String, Any> {
+    // GET /api/open
+    val url = "https://exchange-api.lcx.com/api/open"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/open"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_open_orders_with_date_range(offset, pair, fromDate, toDate): Map<String, Any> {
+    // GET /api/open
+    val url = "https://exchange-api.lcx.com/api/open"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/open"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_single_order_status(orderId): Map<String, Any> {
+    // GET /api/order
+    val url = "https://exchange-api.lcx.com/api/order"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/order"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_complete_order_history(offset): Map<String, Any> {
+    // GET /api/orderHistory
+    val url = "https://exchange-api.lcx.com/api/orderHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/orderHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_order_history_for_pair(offset, pair): Map<String, Any> {
+    // GET /api/orderHistory
+    val url = "https://exchange-api.lcx.com/api/orderHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/orderHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_order_history_by_status(offset, orderStatus): Map<String, Any> {
+    // GET /api/orderHistory
+    val url = "https://exchange-api.lcx.com/api/orderHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/orderHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_order_history_by_type(offset, orderType): Map<String, Any> {
+    // GET /api/orderHistory
+    val url = "https://exchange-api.lcx.com/api/orderHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/orderHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_filtered_order_history(offset, pair, fromDate, toDate, side, orderStatus, orderType): Map<String, Any> {
+    // GET /api/orderHistory
+    val url = "https://exchange-api.lcx.com/api/orderHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/orderHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_all_trade_history(offset): Map<String, Any> {
+    // GET /api/uHistory
+    val url = "https://exchange-api.lcx.com/api/uHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/uHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_trade_history_for_pair(offset, pair): Map<String, Any> {
+    // GET /api/uHistory
+    val url = "https://exchange-api.lcx.com/api/uHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/uHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun get_trade_history_by_date_range(offset, pair, fromDate, toDate): Map<String, Any> {
+    // GET /api/uHistory
+    val url = "https://exchange-api.lcx.com/api/uHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/uHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+suspend fun simple_buy_workflow(order_result): Map<String, Any> {
+    // GET /api/order
+    val url = "https://exchange-api.lcx.com/api/order"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/order"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+
+    }
+}
+
+# Workflow: SimpleBuyWorkflow (sequence)
+
+# None method not supported for kotlin
+# PUT method not supported for kotlin
+suspend fun get_history(0, BTC/USDC): Map<String, Any> {
+    // GET /api/orderHistory
+    val url = "https://exchange-api.lcx.com/api/orderHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/orderHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+
+    }
+}
+
+suspend fun get_trades(0, BTC/USDC): Map<String, Any> {
+    // GET /api/uHistory
+    val url = "https://exchange-api.lcx.com/api/uHistory"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/uHistory"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+
+    }
+}
+
+# None method not supported for kotlin
+# DELETE method not supported for kotlin
+suspend fun confirm_cancelled(first_order_from_list): Map<String, Any> {
+    // GET /api/order
+    val url = "https://exchange-api.lcx.com/api/order"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/order"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+
+    }
+}
+
+# None method not supported for kotlin

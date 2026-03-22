@@ -1,0 +1,26 @@
+# Grid Trading Strategy - Automated grid monitoring
+
+GetMarketTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+GetTradingPairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+GridTradingWorkflow:
+  sequence:
+    1. MonitorMarketTickers:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save ticker_snapshot
+
+    2. GetGridPairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save grid_pairs
+
+    3. print "Grid trading strategy initialized"
+       print "Market data loaded for grid setup"

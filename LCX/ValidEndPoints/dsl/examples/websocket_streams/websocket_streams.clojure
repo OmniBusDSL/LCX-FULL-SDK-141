@@ -1,0 +1,15 @@
+(ns api.client
+  (:require [clj-http.client :as http]
+            [cheshire.core :as json]))
+
+
+# WS method not supported for clojure
+# WS method not supported for clojure
+# WS method not supported for clojure
+# WS method not supported for clojure
+# WS method not supported for clojure
+# None method not supported for clojure
+# WS method not supported for clojure
+# WS method not supported for clojure
+# WS method not supported for clojure
+# None method not supported for clojure

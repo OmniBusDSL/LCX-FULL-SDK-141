@@ -1,0 +1,283 @@
+# LCX DSL Trading Operations - Complete Reference
+# Maps ALL trading endpoints from LCX API v1.1.0 with practical examples
+# Base URL: https://exchange-api.lcx.com
+# All operations require authentication (API key + HMAC signature)
+
+# ===== PLACE ORDER (POST /api/create) =====
+# Creates a new order on the exchange
+# Required parameters: Pair, Amount, Price, OrderType (LIMIT/MARKET), Side (BUY/SELL)
+# Optional: ClientOrderId
+
+PlaceLimitBuyOrder:
+  endpoint: POST /api/create
+  auth: required
+  input: Pair, Amount, Price, OrderType, Side
+  output: json
+  # Example: Pair=BTC/USDC, Amount=0.01, Price=40000, OrderType=LIMIT, Side=BUY
+
+PlaceLimitSellOrder:
+  endpoint: POST /api/create
+  auth: required
+  input: Pair, Amount, Price, OrderType, Side
+  output: json
+  # Example: Pair=BTC/USDC, Amount=0.01, Price=42000, OrderType=LIMIT, Side=SELL
+
+PlaceMarketOrder:
+  endpoint: POST /api/create
+  auth: required
+  input: Pair, Amount, OrderType, Side
+  output: json
+  # Example: Pair=ETH/USDC, Amount=1.0, OrderType=MARKET, Side=BUY (Price not needed for MARKET orders)
+
+# ===== MODIFY ORDER (PUT /api/modify) =====
+# Modifies an existing open LIMIT order
+# Only works on open orders
+# Parameters: OrderId, Amount (new), Price (new)
+
+ModifyOrderPrice:
+  endpoint: PUT /api/modify
+  auth: required
+  input: OrderId, Price
+  output: json
+  # Example: OrderId=order123, Price=39900 (change price to 39900)
+
+ModifyOrderAmount:
+  endpoint: PUT /api/modify
+  auth: required
+  input: OrderId, Amount
+  output: json
+  # Example: OrderId=order123, Amount=0.02 (change amount to 0.02)
+
+ModifyOrderPriceAndAmount:
+  endpoint: PUT /api/modify
+  auth: required
+  input: OrderId, Amount, Price
+  output: json
+  # Example: OrderId=order123, Amount=0.02, Price=39900
+
+# ===== CANCEL ORDER (DELETE /api/cancel) =====
+# Cancels a single open order
+# Parameter: orderId (required, as query param)
+
+CancelSingleOrder:
+  endpoint: DELETE /api/cancel
+  auth: required
+  input: orderId
+  output: json
+  # Example: orderId=order123 → Order cancelled immediately
+
+# ===== CANCEL MULTIPLE ORDERS (DELETE /order/cancel-all) =====
+# Cancels multiple orders in one request
+# Parameter: orderIds (array, max 25 orders)
+
+CancelMultipleOrdersExample:
+  endpoint: DELETE /order/cancel-all
+  auth: required
+  input: orderIds
+  output: json
+  # Example: orderIds=[order123, order124, order125]
+
+# ===== GET OPEN ORDERS (GET /api/open) =====
+# Lists all open (active) orders
+# Required: offset (pagination)
+# Optional: pair, fromDate, toDate (filters)
+
+GetAllOpenOrders:
+  endpoint: GET /api/open
+  auth: required
+  input: offset
+  output: json
+  # Example: offset=0 → Returns first page of open orders
+
+GetOpenOrdersForPair:
+  endpoint: GET /api/open
+  auth: required
+  input: offset, pair
+  output: json
+  # Example: offset=0, pair=BTC/USDC → Open orders only for BTC/USDC
+
+GetOpenOrdersWithDateRange:
+  endpoint: GET /api/open
+  auth: required
+  input: offset, pair, fromDate, toDate
+  output: json
+  # Example: offset=0, pair=BTC/USDC, fromDate=1700000000000, toDate=1700086400000
+
+# ===== GET ORDER DETAILS (GET /api/order) =====
+# Gets details of a specific order
+# Parameter: orderId (query parameter)
+
+GetSingleOrderStatus:
+  endpoint: GET /api/order
+  auth: required
+  input: orderId
+  output: json
+  # Example: orderId=order123 → Returns full order details (status, filled amount, etc)
+
+# ===== GET ORDER HISTORY (GET /api/orderHistory) =====
+# Gets closed/cancelled orders (order history)
+# Required: offset (pagination)
+# Optional: pair, fromDate, toDate, side (BUY/SELL), orderStatus, orderType (LIMIT/MARKET)
+
+GetCompleteOrderHistory:
+  endpoint: GET /api/orderHistory
+  auth: required
+  input: offset
+  output: json
+  # Example: offset=0 → Returns first page of closed/cancelled orders
+
+GetOrderHistoryForPair:
+  endpoint: GET /api/orderHistory
+  auth: required
+  input: offset, pair
+  output: json
+  # Example: offset=0, pair=BTC/USDC → History only for BTC/USDC
+
+GetOrderHistoryByStatus:
+  endpoint: GET /api/orderHistory
+  auth: required
+  input: offset, orderStatus
+  output: json
+  # Example: offset=0, orderStatus=filled → Only completed orders
+
+GetOrderHistoryByType:
+  endpoint: GET /api/orderHistory
+  auth: required
+  input: offset, orderType
+  output: json
+  # Example: offset=0, orderType=LIMIT → Only limit orders
+
+GetFilteredOrderHistory:
+  endpoint: GET /api/orderHistory
+  auth: required
+  input: offset, pair, fromDate, toDate, side, orderStatus, orderType
+  output: json
+  # Example: offset=0, pair=BTC/USDC, side=BUY, orderStatus=filled
+
+# ===== GET USER TRADE HISTORY (GET /api/uHistory) =====
+# Gets completed trades (your trade history)
+# Required: offset (pagination)
+# Optional: pair, fromDate, toDate
+
+GetAllTradeHistory:
+  endpoint: GET /api/uHistory
+  auth: required
+  input: offset
+  output: json
+  # Example: offset=0 → Returns first page of your trades
+
+GetTradeHistoryForPair:
+  endpoint: GET /api/uHistory
+  auth: required
+  input: offset, pair
+  output: json
+  # Example: offset=0, pair=BTC/USDC → Trades only for BTC/USDC pair
+
+GetTradeHistoryByDateRange:
+  endpoint: GET /api/uHistory
+  auth: required
+  input: offset, pair, fromDate, toDate
+  output: json
+  # Example: offset=0, pair=BTC/USDC, fromDate=1700000000000, toDate=1700086400000
+
+# ===== PRACTICAL WORKFLOW EXAMPLES =====
+
+# Workflow 1: Simple Buy Order
+SimpleBuyWorkflow:
+  sequence:
+    1. PlaceOrder:
+         endpoint: POST /api/create
+         auth: required
+         input: BTC/USDC, 0.01, 40000, LIMIT, BUY
+         output: save order_result
+
+    2. GetOrderStatus:
+         endpoint: GET /api/order
+         auth: required
+         input: order_result
+         output: save order_status
+
+    3. print "Order ID: " + order_result
+       print "Status: " + order_status
+
+# Workflow 2: Complex Trading with History
+ComplexTradingWorkflow:
+  sequence:
+    # Step 1: Check current open orders
+    1. GetOpen:
+         endpoint: GET /api/open
+         auth: required
+         input: 0, BTC/USDC
+         output: save open_orders
+
+    # Step 2: Modify the first one if exists
+    2. ModifyFirst:
+         endpoint: PUT /api/modify
+         auth: required
+         input: open_orders_id_0, 0.015, 39900
+         output: save modify_result
+
+    # Step 3: Get all closed orders
+    3. GetHistory:
+         endpoint: GET /api/orderHistory
+         auth: required
+         input: 0, BTC/USDC
+         output: save closed_orders
+
+    # Step 4: Get completed trades
+    4. GetTrades:
+         endpoint: GET /api/uHistory
+         auth: required
+         input: 0, BTC/USDC
+         output: save trade_history
+
+    # Step 5: Print all info
+    5. print "Open: " + open_orders
+       print "Modified: " + modify_result
+       print "Closed: " + closed_orders
+       print "Trades: " + trade_history
+
+# Workflow 3: Order Cancellation
+CancelOrdersWorkflow:
+  sequence:
+    # Get open orders
+    1. GetOpenOrders:
+         endpoint: GET /api/open
+         auth: required
+         input: 0
+         output: save open_list
+
+    # Cancel single order
+    2. CancelOne:
+         endpoint: DELETE /api/cancel
+         auth: required
+         input: first_order_from_list
+         output: save cancel_result
+
+    # Confirm cancellation
+    3. ConfirmCancelled:
+         endpoint: GET /api/order
+         auth: required
+         input: first_order_from_list
+         output: save final_status
+
+    4. print "Cancelled: " + cancel_result
+       print "Final status: " + final_status
+
+# ===== ENDPOINT MAPPING REFERENCE =====
+# This file documents all trading endpoints available in LCX API v1.1.0
+#
+# POST /api/create            → PlaceOrder (LIMIT/MARKET, BUY/SELL)
+# PUT /api/modify             → ModifyOrder (change price/amount of open order)
+# DELETE /api/cancel          → CancelOrder (cancel single order by ID)
+# DELETE /order/cancel-all    → CancelMultipleOrders (batch cancel up to 25)
+# GET /api/open               → GetOpenOrders (list active orders, pagination)
+# GET /api/order              → GetOrderDetails (get specific order status)
+# GET /api/orderHistory       → GetOrderHistory (closed/cancelled orders, pagination)
+# GET /api/uHistory           → GetUserTradeHistory (completed trades, pagination)
+#
+# Additional account endpoints (see authenticated_trading.lcx):
+# GET /api/account            → GetAccountInfo
+# GET /api/balances           → GetBalances (all assets)
+# GET /api/balance            → GetAssetBalance (single asset)
+# GET /api/fees               → GetTradingFees

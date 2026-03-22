@@ -1,0 +1,45 @@
+# LCX DSL Example: Dynamic Market Data with Loops
+# This example demonstrates loops to fetch tickers for multiple pairs dynamically
+# Note: Parser supports loops, but code generation for loops needs template implementation
+
+FetchAllPairsData:
+  sequence:
+    # Step 1: Get all available pairs
+    1. FetchAllPairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save all_pairs
+
+    # Step 2: Get tickers for key pairs (currently hardcoded, should be dynamic)
+    2. GetBTCUSDCTicker:
+         endpoint: GET /api/ticker
+         auth: none
+         input: pair
+         output: print
+
+    3. GetETHUSDCTicker:
+         endpoint: GET /api/ticker
+         auth: none
+         input: pair
+         output: print
+
+    4. GetLCXUSDCTicker:
+         endpoint: GET /api/ticker
+         auth: none
+         input: pair
+         output: print
+
+# Future: Once loop code generation is implemented, this would work:
+# LoopThroughAllPairs:
+#   sequence:
+#     1. FetchAllPairs:
+#          endpoint: GET /api/pairs
+#          auth: none
+#          output: save pairs_list
+#
+#     2. LoopPairs:
+#          loop: pair in pairs_list
+#            endpoint: GET /api/ticker
+#            auth: none
+#            input: pair
+#            output: print "Ticker for {pair}: {response.data.bestAsk}"

@@ -1,0 +1,64 @@
+require "http"
+require "json"
+require "openssl"
+
+
+def fetch_all_pairs_data(pair)
+  # GET /api/ticker
+  url = "https://exchange-api.lcx.com/api/ticker"
+  headers = HTTP::Headers{
+    "Content-Type" => "application/json"
+  }
+
+  response = HTTP::Client.get(url, headers: headers)
+
+  if response.status.ok?
+    data = JSON.parse(response.body)
+    puts data.to_pretty_json
+    data
+
+  else
+    raise "HTTP #{response.status.code}: #{response.body}"
+  end
+end
+
+# Workflow: FetchAllPairsData (sequence)
+
+def get_ethusdc_ticker(pair)
+  # GET /api/ticker
+  url = "https://exchange-api.lcx.com/api/ticker"
+  headers = HTTP::Headers{
+    "Content-Type" => "application/json"
+  }
+
+  response = HTTP::Client.get(url, headers: headers)
+
+  if response.status.ok?
+    data = JSON.parse(response.body)
+    puts data.to_pretty_json
+    data
+
+  else
+    raise "HTTP #{response.status.code}: #{response.body}"
+  end
+end
+
+def get_lcxusdc_ticker(pair)
+  # GET /api/ticker
+  url = "https://exchange-api.lcx.com/api/ticker"
+  headers = HTTP::Headers{
+    "Content-Type" => "application/json"
+  }
+
+  response = HTTP::Client.get(url, headers: headers)
+
+  if response.status.ok?
+    data = JSON.parse(response.body)
+    puts data.to_pretty_json
+    data
+
+  else
+    raise "HTTP #{response.status.code}: #{response.body}"
+  end
+end
+

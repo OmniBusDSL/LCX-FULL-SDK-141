@@ -1,0 +1,26 @@
+# Dollar Cost Averaging (DCA) - Automated investment workflow
+
+GetAvailableTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+GetAvailablePairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+DCAInvestmentWorkflow:
+  sequence:
+    1. FetchMarketTickers:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save market_tickers
+
+    2. FetchAvailablePairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save available_pairs
+
+    3. print "DCA workflow initialized"
+       print "Ready to execute dollar cost averaging strategy"

@@ -1,0 +1,25 @@
+pragma solidity ^0.8.0;
+
+pragma solidity ^0.8.0;
+contract ApiClient {
+  function fetch_all_pairs_data() public returns (bytes memory) {
+    // Web3 HTTP call
+    return "";
+  }
+}
+# Workflow: FetchAllPairsData (sequence)
+
+pragma solidity ^0.8.0;
+contract ApiClient {
+  function get_ethusdc_ticker() public returns (bytes memory) {
+    // Web3 HTTP call
+    return "";
+  }
+}
+pragma solidity ^0.8.0;
+contract ApiClient {
+  function get_lcxusdc_ticker() public returns (bytes memory) {
+    // Web3 HTTP call
+    return "";
+  }
+}

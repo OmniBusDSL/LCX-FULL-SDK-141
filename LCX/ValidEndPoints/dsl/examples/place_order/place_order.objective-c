@@ -1,0 +1,53 @@
+#import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonCrypto.h>
+
+
+# POST method not supported for objective-c
+- (void)check_order_statusWithCompletion:(void(^)(NSDictionary *, NSError *))completion {
+    // GET /api/trading/order/{order_id}
+    NSString *urlString = @"https://exchange-api.lcx.com/api/trading/order/{order_id}";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            completion(nil, error);
+        } else {
+
+        }
+    }] resume];
+}
+
+# POST method not supported for objective-c
+- (void)complete_order_flowWithCompletion:(void(^)(NSDictionary *, NSError *))completion {
+    // GET /api/account/balance
+    NSString *urlString = @"https://exchange-api.lcx.com/api/account/balance";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            completion(nil, error);
+        } else {
+
+        }
+    }] resume];
+}
+
+
+
+# POST method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c
+# None method not supported for objective-c

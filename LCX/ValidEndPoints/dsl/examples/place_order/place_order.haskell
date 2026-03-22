@@ -1,0 +1,27 @@
+import Network.HTTP
+
+# POST method not supported for haskell
+check_order_status :: String -> IO String
+check_order_status params = do
+  let url = "https://exchange-api.lcx.com/api/trading/order/{order_id}"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+# POST method not supported for haskell
+complete_order_flow :: String -> IO String
+complete_order_flow params = do
+  let url = "https://exchange-api.lcx.com/api/account/balance"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+
+
+# POST method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
+# None method not supported for haskell
