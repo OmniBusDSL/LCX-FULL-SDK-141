@@ -1,0 +1,19 @@
+import Network.HTTP
+
+fetch_all_pairs_data :: String -> IO String
+fetch_all_pairs_data params = do
+  let url = "https://exchange-api.lcx.com/api/ticker"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+# Workflow: FetchAllPairsData (sequence)
+
+get_ethusdc_ticker :: String -> IO String
+get_ethusdc_ticker params = do
+  let url = "https://exchange-api.lcx.com/api/ticker"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_lcxusdc_ticker :: String -> IO String
+get_lcxusdc_ticker params = do
+  let url = "https://exchange-api.lcx.com/api/ticker"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response

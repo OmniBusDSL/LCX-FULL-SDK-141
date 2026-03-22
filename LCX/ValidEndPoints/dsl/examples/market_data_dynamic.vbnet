@@ -1,0 +1,22 @@
+Imports System.Net.Http
+
+Function fetch_all_pairs_data(pair) As String
+  Dim url As String = "https://exchange-api.lcx.com/api/ticker"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+# Workflow: FetchAllPairsData (sequence)
+
+Function get_ethusdc_ticker(pair) As String
+  Dim url As String = "https://exchange-api.lcx.com/api/ticker"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+Function get_lcxusdc_ticker(pair) As String
+  Dim url As String = "https://exchange-api.lcx.com/api/ticker"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function

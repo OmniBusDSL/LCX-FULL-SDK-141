@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCX API - Request Samples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1e3c72;
+        }
+        /* Tabs pentru endpoint-uri */
+        .endpoint-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .endpoint-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #ecf0f1;
+            margin-right: 5px;
+            border-radius: 8px 8px 0 0;
+            transition: 0.2s;
+        }
+        .endpoint-tab.active {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        /* Container pentru conținutul endpoint-ului */
+        .endpoint-content {
+            display: none;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .endpoint-content.active {
+            display: block;
+        }
+        /* Tabs pentru limbaje (în interior) */
+        .lang-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .lang-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            background: #f8f9fa;
+            margin-right: 5px;
+            border-radius: 6px 6px 0 0;
+            transition: 0.2s;
+        }
+        .lang-tab.active {
+            background: #2ecc71;
+            color: white;
+            font-weight: bold;
+        }
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: block;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        code {
+            font-family: 'Courier New', monospace;
+        }
+        .endpoint-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>LCX API v1.1.0 – Request Samples (Market API)</h1>
+
+    <!-- Tabs pentru endpoint-uri -->
+    <div class="endpoint-tabs">
+        <div class="endpoint-tab active" data-endpoint="orderbook">Order book</div>
+        <div class="endpoint-tab" data-endpoint="kline">Kline (Candles)</div>
+        <div class="endpoint-tab" data-endpoint="trades">Trades (public)</div>
+        <div class="endpoint-tab" data-endpoint="pairs">Pairs</div>
+        <div class="endpoint-tab" data-endpoint="pair">Pair</div>
+        <div class="endpoint-tab" data-endpoint="tickers">Tickers</div>
+        <div class="endpoint-tab" data-endpoint="ticker">Ticker (single)</div>
+    </div>
+
+    <!-- Conținutul fiecărui endpoint -->
+    <div id="orderbook" class="endpoint-content active">
+        <div class="endpoint-title">GET /api/book – Order book</div>
+        <div class="lang-tabs">
+            <div class="lang-tab active" data-lang="js">JavaScript</div>
+            <div class="lang-tab" data-lang="py">Python</div>
+            <div class="lang-tab" data-lang="java">Java</div>
+            <div class="lang-tab" data-lang="go">Golang</div>
+            <div class="lang-tab" data-lang="php">PHP</div>
+        </div>
+        <div class="lang-content active" data-lang="js">
+            <pre><code>var axios = require("axios");
+var params = { pair: "LCX/ETH" };
+
+var config = {
+  method: "get",
+  url: "https://exchange-api.lcx.com/api/book",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  params,
+};
+
+axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });</code></pre>
+        </div>
+        <div class="lang-content" data-lang="py">
+            <pre><code>import requests
+
+params = {"pair": "LCX/ETH"}
+response = requests.get("https://exchange-api.lcx.com/api/book", params=params)
+print(response.json())</code></pre>
+        </div>
+        <div class="lang-content" data-lang="java">
+            <pre><code>import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://exchange-api.lcx.com/api/book?pair=LCX/ETH"))
+            .header("Content-Type", "application/json")
+            .GET()
+            .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="go">
+            <pre><code>package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+)
+
+func main() {
+    url := "https://exchange-api.lcx.com/api/book?pair=LCX/ETH"
+    req, _ := http.NewRequest("GET", url, nil)
+    req.Header.Set("Content-Type", "application/json")
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="php">
+            <pre><code>&lt;?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://exchange-api.lcx.com/api/book?pair=LCX/ETH',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?&gt;</code></pre>
+        </div>
+    </div>
+
+    <div id="kline" class="endpoint-content">
+        <div class="endpoint-title">GET /v1/market/kline – Kline (Candles)</div>
+        <div class="lang-tabs">
+            <div class="lang-tab active" data-lang="js">JavaScript</div>
+            <div class="lang-tab" data-lang="py">Python</div>
+            <div class="lang-tab" data-lang="java">Java</div>
+            <div class="lang-tab" data-lang="go">Golang</div>
+            <div class="lang-tab" data-lang="php">PHP</div>
+        </div>
+        <div class="lang-content active" data-lang="js">
+            <pre><code>var axios = require("axios");
+var params = {
+  pair: "ETH/BTC",
+  resolution: "60",
+  from: 1608129416,
+  to: 1608229416,
+};
+
+var config = {
+  method: "get",
+  url: "https://api-kline.lcx.com/v1/market/kline",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  params,
+};
+
+axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });</code></pre>
+        </div>
+        <div class="lang-content" data-lang="py">
+            <pre><code>import requests
+
+params = {
+    "pair": "ETH/BTC",
+    "resolution": "60",
+    "from": 1608129416,
+    "to": 1608229416
+}
+response = requests.get("https://api-kline.lcx.com/v1/market/kline", params=params)
+print(response.json())</code></pre>
+        </div>
+        <div class="lang-content" data-lang="java">
+            <pre><code>import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://api-kline.lcx.com/v1/market/kline?pair=ETH/BTC&resolution=60&from=1608129416&to=1608229416"))
+            .header("Content-Type", "application/json")
+            .GET()
+            .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="go">
+            <pre><code>package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+)
+
+func main() {
+    url := "https://api-kline.lcx.com/v1/market/kline?pair=ETH/BTC&resolution=60&from=1608129416&to=1608229416"
+    req, _ := http.NewRequest("GET", url, nil)
+    req.Header.Set("Content-Type", "application/json")
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="php">
+            <pre><code>&lt;?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api-kline.lcx.com/v1/market/kline?pair=ETH/BTC&resolution=60&from=1608129416&to=1608229416',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?&gt;</code></pre>
+        </div>
+    </div>
+
+    <div id="trades" class="endpoint-content">
+        <div class="endpoint-title">GET /api/trades – Public Trades</div>
+        <div class="lang-tabs">
+            <div class="lang-tab active" data-lang="js">JavaScript</div>
+            <div class="lang-tab" data-lang="py">Python</div>
+            <div class="lang-tab" data-lang="java">Java</div>
+            <div class="lang-tab" data-lang="go">Golang</div>
+            <div class="lang-tab" data-lang="php">PHP</div>
+        </div>
+        <div class="lang-content active" data-lang="js">
+            <pre><code>var axios = require("axios");
+var params = { offset: 1, pair: "ETH/BTC" };
+
+var config = {
+  method: "get",
+  url: "https://exchange-api.lcx.com/api/trades",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  params,
+};
+
+axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });</code></pre>
+        </div>
+        <div class="lang-content" data-lang="py">
+            <pre><code>import requests
+
+params = {"offset": 1, "pair": "ETH/BTC"}
+response = requests.get("https://exchange-api.lcx.com/api/trades", params=params)
+print(response.json())</code></pre>
+        </div>
+        <div class="lang-content" data-lang="java">
+            <pre><code>import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://exchange-api.lcx.com/api/trades?offset=1&pair=ETH/BTC"))
+            .header("Content-Type", "application/json")
+            .GET()
+            .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="go">
+            <pre><code>package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+)
+
+func main() {
+    url := "https://exchange-api.lcx.com/api/trades?offset=1&pair=ETH/BTC"
+    req, _ := http.NewRequest("GET", url, nil)
+    req.Header.Set("Content-Type", "application/json")
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="php">
+            <pre><code>&lt;?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://exchange-api.lcx.com/api/trades?offset=1&pair=ETH/BTC',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?&gt;</code></pre>
+        </div>
+    </div>
+
+    <div id="pairs" class="endpoint-content">
+        <div class="endpoint-title">GET /api/pairs – All Pairs</div>
+        <div class="lang-tabs">
+            <div class="lang-tab active" data-lang="js">JavaScript</div>
+            <div class="lang-tab" data-lang="py">Python</div>
+            <div class="lang-tab" data-lang="java">Java</div>
+            <div class="lang-tab" data-lang="go">Golang</div>
+            <div class="lang-tab" data-lang="php">PHP</div>
+        </div>
+        <div class="lang-content active" data-lang="js">
+            <pre><code>var axios = require('axios')
+
+var config = {
+  method: 'get',
+  url: 'https://exchange-api.lcx.com/api/pairs',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}
+
+axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data))
+  })
+  .catch(function (error) {
+    console.log(error)
+  })</code></pre>
+        </div>
+        <div class="lang-content" data-lang="py">
+            <pre><code>import requests
+
+response = requests.get("https://exchange-api.lcx.com/api/pairs")
+print(response.json())</code></pre>
+        </div>
+        <div class="lang-content" data-lang="java">
+            <pre><code>import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://exchange-api.lcx.com/api/pairs"))
+            .header("Content-Type", "application/json")
+            .GET()
+            .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="go">
+            <pre><code>package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+)
+
+func main() {
+    url := "https://exchange-api.lcx.com/api/pairs"
+    req, _ := http.NewRequest("GET", url, nil)
+    req.Header.Set("Content-Type", "application/json")
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="php">
+            <pre><code>&lt;?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://exchange-api.lcx.com/api/pairs',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?&gt;</code></pre>
+        </div>
+    </div>
+
+    <div id="pair" class="endpoint-content">
+        <div class="endpoint-title">GET /api/pair – Specific Pair</div>
+        <div class="lang-tabs">
+            <div class="lang-tab active" data-lang="js">JavaScript</div>
+            <div class="lang-tab" data-lang="py">Python</div>
+            <div class="lang-tab" data-lang="java">Java</div>
+            <div class="lang-tab" data-lang="go">Golang</div>
+            <div class="lang-tab" data-lang="php">PHP</div>
+        </div>
+        <div class="lang-content active" data-lang="js">
+            <pre><code>var axios = require("axios");
+var params = { pair: "ETH/BTC" };
+
+var config = {
+  method: "get",
+  url: "https://exchange-api.lcx.com/api/pair",
+  params,
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });</code></pre>
+        </div>
+        <div class="lang-content" data-lang="py">
+            <pre><code>import requests
+
+params = {"pair": "ETH/BTC"}
+response = requests.get("https://exchange-api.lcx.com/api/pair", params=params)
+print(response.json())</code></pre>
+        </div>
+        <div class="lang-content" data-lang="java">
+            <pre><code>import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://exchange-api.lcx.com/api/pair?pair=ETH/BTC"))
+            .header("Content-Type", "application/json")
+            .GET()
+            .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="go">
+            <pre><code>package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+)
+
+func main() {
+    url := "https://exchange-api.lcx.com/api/pair?pair=ETH/BTC"
+    req, _ := http.NewRequest("GET", url, nil)
+    req.Header.Set("Content-Type", "application/json")
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="php">
+            <pre><code>&lt;?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://exchange-api.lcx.com/api/pair?pair=ETH/BTC',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?&gt;</code></pre>
+        </div>
+    </div>
+
+    <div id="tickers" class="endpoint-content">
+        <div class="endpoint-title">GET /api/tickers – All Tickers</div>
+        <div class="lang-tabs">
+            <div class="lang-tab active" data-lang="js">JavaScript</div>
+            <div class="lang-tab" data-lang="py">Python</div>
+            <div class="lang-tab" data-lang="java">Java</div>
+            <div class="lang-tab" data-lang="go">Golang</div>
+            <div class="lang-tab" data-lang="php">PHP</div>
+        </div>
+        <div class="lang-content active" data-lang="js">
+            <pre><code>var axios = require('axios')
+
+var config = {
+  method: 'get',
+  url: 'https://exchange-api.lcx.com/api/tickers',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}
+
+axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data))
+  })
+  .catch(function (error) {
+    console.log(error)
+  })</code></pre>
+        </div>
+        <div class="lang-content" data-lang="py">
+            <pre><code>import requests
+
+response = requests.get("https://exchange-api.lcx.com/api/tickers")
+print(response.json())</code></pre>
+        </div>
+        <div class="lang-content" data-lang="java">
+            <pre><code>import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://exchange-api.lcx.com/api/tickers"))
+            .header("Content-Type", "application/json")
+            .GET()
+            .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="go">
+            <pre><code>package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+)
+
+func main() {
+    url := "https://exchange-api.lcx.com/api/tickers"
+    req, _ := http.NewRequest("GET", url, nil)
+    req.Header.Set("Content-Type", "application/json")
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="php">
+            <pre><code>&lt;?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://exchange-api.lcx.com/api/tickers',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?&gt;</code></pre>
+        </div>
+    </div>
+
+    <div id="ticker" class="endpoint-content">
+        <div class="endpoint-title">POST /api/ticker – Single Ticker</div>
+        <div class="lang-tabs">
+            <div class="lang-tab active" data-lang="js">JavaScript</div>
+            <div class="lang-tab" data-lang="py">Python</div>
+            <div class="lang-tab" data-lang="java">Java</div>
+            <div class="lang-tab" data-lang="go">Golang</div>
+            <div class="lang-tab" data-lang="php">PHP</div>
+        </div>
+        <div class="lang-content active" data-lang="js">
+            <pre><code>var axios = require("axios");
+var params = { pair: "ETH/BTC" };
+
+var config = {
+  method: "post",
+  url: "https://exchange-api.lcx.com/api/ticker",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  params,
+};
+
+axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });</code></pre>
+        </div>
+        <div class="lang-content" data-lang="py">
+            <pre><code>import requests
+
+params = {"pair": "ETH/BTC"}
+response = requests.post("https://exchange-api.lcx.com/api/ticker", params=params)
+print(response.json())</code></pre>
+        </div>
+        <div class="lang-content" data-lang="java">
+            <pre><code>import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://exchange-api.lcx.com/api/ticker?pair=ETH/BTC"))
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.noBody())
+            .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="go">
+            <pre><code>package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+)
+
+func main() {
+    url := "https://exchange-api.lcx.com/api/ticker?pair=ETH/BTC"
+    req, _ := http.NewRequest("POST", url, nil)
+    req.Header.Set("Content-Type", "application/json")
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+        </div>
+        <div class="lang-content" data-lang="php">
+            <pre><code>&lt;?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://exchange-api.lcx.com/api/ticker?pair=ETH/BTC',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?&gt;</code></pre>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Comută între endpoint-uri
+    const endpointTabs = document.querySelectorAll('.endpoint-tab');
+    const endpointContents = document.querySelectorAll('.endpoint-content');
+
+    endpointTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.endpoint;
+            // Dezactivează toate tab-urile și conținuturile
+            endpointTabs.forEach(t => t.classList.remove('active'));
+            endpointContents.forEach(c => c.classList.remove('active'));
+            // Activează tab-ul și conținutul corespunzător
+            tab.classList.add('active');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+
+    // Comută între limbaje în interiorul fiecărui endpoint
+    document.querySelectorAll('.endpoint-content').forEach(content => {
+        const langTabs = content.querySelectorAll('.lang-tab');
+        const langContents = content.querySelectorAll('.lang-content');
+
+        langTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const lang = tab.dataset.lang;
+                // Dezactivează toate tab-urile și conținuturile din acest endpoint
+                langTabs.forEach(t => t.classList.remove('active'));
+                langContents.forEach(c => c.classList.remove('active'));
+                // Activează tab-ul și conținutul corespunzător
+                tab.classList.add('active');
+                content.querySelector(`.lang-content[data-lang="${lang}"]`).classList.add('active');
+            });
+        });
+    });
+</script>
+</body>
+</html>

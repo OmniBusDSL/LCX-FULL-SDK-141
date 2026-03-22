@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCX DSL Visual Workflow Editor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #toolbar {
+            height: 44px;
+            background: #252526;
+            border-bottom: 1px solid #3c3c3c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 12px;
+            flex-shrink: 0;
+        }
+
+        .toolbar-title {
+            font-weight: bold;
+            color: #007acc;
+            font-size: 14px;
+            min-width: 240px;
+        }
+
+        button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 12px;
+            font-family: inherit;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #1084d7;
+        }
+
+        button.secondary {
+            background: #3e3e42;
+            color: #d4d4d4;
+        }
+
+        button.secondary:hover {
+            background: #4a4a50;
+        }
+
+        .toolbar-spacer {
+            flex: 1;
+        }
+
+        #main-area {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        #sidebar {
+            width: 220px;
+            background: #252526;
+            border-right: 1px solid #3c3c3c;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .category-header {
+            padding: 8px 12px;
+            font-weight: bold;
+            color: #007acc;
+            background: #1e1e1e;
+            border-bottom: 1px solid #3c3c3c;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .category-header:first-of-type {
+            margin-top: 0;
+        }
+
+        .palette-block {
+            padding: 8px 12px;
+            margin: 4px;
+            background: #2d2d30;
+            border: 1px solid #3c3c3c;
+            border-radius: 2px;
+            cursor: move;
+            font-size: 12px;
+            user-select: none;
+            transition: all 0.2s;
+        }
+
+        .palette-block:hover {
+            background: #3e3e42;
+            border-color: #007acc;
+        }
+
+        .palette-block.dragging {
+            opacity: 0.5;
+        }
+
+        #canvas-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #1e1e1e;
+            cursor: default;
+            user-select: none;
+        }
+
+        #svg-layer {
+            position: absolute;
+            inset: 0;
+            overflow: visible;
+        }
+
+        #canvas {
+            position: absolute;
+            inset: 0;
+        }
+
+        .block {
+            position: absolute;
+            width: 200px;
+            background: #2d2d30;
+            border: 2px solid #3c3c3c;
+            border-radius: 4px;
+            user-select: none;
+            cursor: grab;
+            transition: border-color 0.2s;
+        }
+
+        .block.selected {
+            border-color: #007acc;
+            box-shadow: 0 0 0 1px #007acc;
+        }
+
+        .block:hover {
+            border-color: #555;
+        }
+
+        .block-header {
+            padding: 6px 8px;
+            font-weight: bold;
+            font-size: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 2px 2px 0 0;
+            cursor: move;
+        }
+
+        .block-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .block-title {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .block-props {
+            padding: 4px 8px;
+            font-size: 11px;
+            color: #888;
+        }
+
+        .prop-row {
+            display: block;
+            padding: 2px 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .block-ports {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .port {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #007acc;
+            border: 2px solid #2d2d30;
+            border-radius: 50%;
+            cursor: crosshair;
+            pointer-events: auto;
+            transition: all 0.2s;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .port:hover {
+            background: #1084d7;
+            box-shadow: 0 0 4px #007acc;
+        }
+
+        .port-input {
+            left: -8px;
+        }
+
+        .port-output {
+            right: -8px;
+        }
+
+        #property-panel {
+            width: 260px;
+            background: #252526;
+            border-left: 1px solid #3c3c3c;
+            overflow-y: auto;
+            flex-shrink: 0;
+            padding: 12px;
+        }
+
+        .prop-panel-empty {
+            color: #888;
+            font-size: 12px;
+            padding: 12px;
+        }
+
+        #prop-title {
+            font-weight: bold;
+            color: #007acc;
+            margin-bottom: 12px;
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+        #prop-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .prop-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .prop-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .prop-input {
+            background: #1e1e1e;
+            border: 1px solid #3c3c3c;
+            color: #d4d4d4;
+            padding: 4px 6px;
+            font-size: 11px;
+            font-family: inherit;
+            border-radius: 2px;
+        }
+
+        .prop-input:focus {
+            outline: none;
+            border-color: #007acc;
+            background: #1a1a1a;
+        }
+
+        #output-panel-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: #1e1e1e;
+            border-top: 1px solid #3c3c3c;
+            overflow: hidden;
+            transition: height 0.3s;
+            z-index: 100;
+        }
+
+        #output-panel-container.open {
+            height: 200px;
+        }
+
+        #output-panel-header {
+            padding: 8px 12px;
+            background: #252526;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #3c3c3c;
+            cursor: pointer;
+        }
+
+        #output-panel-header h3 {
+            font-size: 13px;
+            font-weight: bold;
+            color: #007acc;
+            flex: 1;
+        }
+
+        #output-panel-close {
+            cursor: pointer;
+            color: #888;
+            font-weight: bold;
+        }
+
+        #output-code {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 12px;
+            font-size: 11px;
+            color: #d4d4d4;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: inherit;
+        }
+
+        svg path.edge-path {
+            stroke: #007acc;
+            stroke-width: 2;
+            fill: none;
+            pointer-events: auto;
+        }
+
+        svg path.edge-path:hover {
+            stroke: #1084d7;
+            stroke-width: 3;
+        }
+
+        svg line.edge-preview {
+            stroke: #888;
+            stroke-width: 1;
+            stroke-dasharray: 4,4;
+            pointer-events: none;
+        }
+
+        .main-area-with-panel {
+            height: calc(100vh - 44px - 200px);
+        }
+
+        #examples-section {
+            padding: 12px;
+            background: #1e1e1e;
+            border-bottom: 1px solid #3c3c3c;
+        }
+
+        #examples-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        #examples-select {
+            width: 100%;
+            background: #252526;
+            color: #d4d4d4;
+            border: 1px solid #3c3c3c;
+            padding: 6px;
+            border-radius: 2px;
+            font-size: 12px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        #examples-select:hover {
+            border-color: #007acc;
+        }
+
+        #examples-select:focus {
+            outline: none;
+            border-color: #007acc;
+            background: #1e1e1e;
+        }
+
+        #btn-load-example {
+            width: 100%;
+            margin-top: 6px;
+            padding: 6px;
+            background: #007acc;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 12px;
+            font-family: inherit;
+        }
+
+        #btn-load-example:hover {
+            background: #1084d7;
+        }
+
+        #example-content {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #1a1a1a;
+            border: 1px solid #3c3c3c;
+            padding: 6px;
+            margin-top: 6px;
+            border-radius: 2px;
+            font-size: 10px;
+            color: #888;
+            display: none;
+        }
+
+        #example-content.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="toolbar">
+        <span class="toolbar-title">LCX Visual Workflow Editor</span>
+        <button id="btn-generate" onclick="generateAndShow()">Generate .lcx</button>
+        <button id="btn-compiler" onclick="openInCompiler()" class="secondary">Open in Compiler</button>
+        <button id="btn-clear" onclick="clearCanvas()" class="secondary">Clear</button>
+        <div class="toolbar-spacer"></div>
+        <span id="toolbar-status" style="font-size: 12px; color: #888;"></span>
+    </div>
+
+    <div id="main-area">
+        <div id="sidebar">
+            <div id="examples-section">
+                <label id="examples-label">Load Example</label>
+                <select id="examples-select">
+                    <option value="">-- Select Example --</option>
+                </select>
+                <button id="btn-load-example" onclick="loadSelectedExample()">Load</button>
+                <div id="example-content"></div>
+            </div>
+        </div>
+        <div id="canvas-container">
+            <svg id="svg-layer"></svg>
+            <div id="canvas"></div>
+        </div>
+        <div id="property-panel">
+            <div class="prop-panel-empty">Click a block to edit properties</div>
+        </div>
+    </div>
+
+    <div id="output-panel-container">
+        <div id="output-panel-header">
+            <h3>.lcx Generated Code</h3>
+            <span id="output-panel-close" onclick="toggleOutputPanel()">▲</span>
+        </div>
+        <div id="output-code"></div>
+    </div>
+
+    <script>
+        // ============================================================================
+        // BLOCK REGISTRY - Define all 15 block types
+        // ============================================================================
+
+        const BLOCK_REGISTRY = {
+            // ===== DATA BLOCKS =====
+            get_tickers: {
+                label: 'Get Tickers',
+                category: 'Data',
+                color: '#1565C0',
+                icon: '[T]',
+                endpoint: '/api/tickers',
+                method: 'GET',
+                defaultProps: {
+                    name: 'GetTickers',
+                    auth: 'none',
+                    outputMode: 'json',
+                    outputVar: ''
+                },
+                propFields: [
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode (json|print|save)'],
+                    ['outputVar', 'Output Variable (if save)']
+                ],
+                inputFields: []
+            },
+            get_pair: {
+                label: 'Get Pair',
+                category: 'Data',
+                color: '#1565C0',
+                icon: '[P]',
+                endpoint: '/api/pair',
+                method: 'GET',
+                defaultProps: {
+                    name: 'GetPair',
+                    pair: 'BTC/USDC',
+                    auth: 'none',
+                    outputMode: 'json',
+                    outputVar: ''
+                },
+                propFields: [
+                    ['pair', 'Pair'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable (if save)']
+                ],
+                inputFields: ['pair']
+            },
+            get_order_book: {
+                label: 'Get Order Book',
+                category: 'Data',
+                color: '#1565C0',
+                icon: '[B]',
+                endpoint: '/api/book',
+                method: 'GET',
+                defaultProps: {
+                    name: 'GetOrderBook',
+                    pair: 'BTC/USDC',
+                    auth: 'none',
+                    outputMode: 'json',
+                    outputVar: ''
+                },
+                propFields: [
+                    ['pair', 'Pair'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable (if save)']
+                ],
+                inputFields: ['pair']
+            },
+            get_trades: {
+                label: 'Get Trades',
+                category: 'Data',
+                color: '#1565C0',
+                icon: '[~]',
+                endpoint: '/api/trades',
+                method: 'GET',
+                defaultProps: {
+                    name: 'GetTrades',
+                    pair: 'BTC/USDC',
+                    offset: '0',
+                    auth: 'none',
+                    outputMode: 'json',
+                    outputVar: ''
+                },
+                propFields: [
+                    ['pair', 'Pair'],
+                    ['offset', 'Offset'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable (if save)']
+                ],
+                inputFields: ['pair', 'offset']
+            },
+            get_candles: {
+                label: 'Get Candles',
+                category: 'Data',
+                color: '#1565C0',
+                icon: '[K]',
+                endpoint: '/v1/market/kline',
+                method: 'GET',
+                defaultProps: {
+                    name: 'GetCandles',
+                    pair: 'BTC/USDC',
+                    resolution: '60',
+                    auth: 'none',
+                    outputMode: 'json',
+                    outputVar: ''
+                },
+                propFields: [
+                    ['pair', 'Pair'],
+                    ['resolution', 'Resolution (minutes)'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable (if save)']
+                ],
+                inputFields: ['pair', 'resolution']
+            },
+
+            // ===== TRADING BLOCKS =====
+            place_order: {
+                label: 'Place Order',
+                category: 'Trading',
+                color: '#B71C1C',
+                icon: '[+]',
+                endpoint: '/api/create',
+                method: 'POST',
+                defaultProps: {
+                    name: 'PlaceOrder',
+                    pair: 'BTC/USDC',
+                    amount: '0.01',
+                    price: '40000',
+                    side: 'BUY',
+                    orderType: 'LIMIT',
+                    auth: 'required',
+                    outputMode: 'json',
+                    outputVar: ''
+                },
+                propFields: [
+                    ['pair', 'Pair'],
+                    ['amount', 'Amount'],
+                    ['price', 'Price'],
+                    ['side', 'Side (BUY|SELL)'],
+                    ['orderType', 'Order Type (LIMIT|MARKET)'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable (if save)']
+                ],
+                inputFields: ['pair', 'amount', 'price', 'side', 'orderType']
+            },
+            cancel_order: {
+                label: 'Cancel Order',
+                category: 'Trading',
+                color: '#B71C1C',
+                icon: '[X]',
+                endpoint: '/api/cancel',
+                method: 'DELETE',
+                defaultProps: {
+                    name: 'CancelOrder',
+                    orderId: '',
+                    auth: 'required',
+                    outputMode: 'json',
+                    outputVar: ''
+                },
+                propFields: [
+                    ['orderId', 'Order ID'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable (if save)']
+                ],
+                inputFields: ['orderId']
+            },
+            get_open_orders: {
+                label: 'Open Orders',
+                category: 'Trading',
+                color: '#B71C1C',
+                icon: '[O]',
+                endpoint: '/api/open',
+                method: 'GET',
+                defaultProps: {
+                    name: 'GetOpenOrders',
+                    offset: '0',
+                    pair: '',
+                    auth: 'required',
+                    outputMode: 'save',
+                    outputVar: 'open_orders'
+                },
+                propFields: [
+                    ['offset', 'Offset'],
+                    ['pair', 'Pair (optional)'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable']
+                ],
+                inputFields: ['offset']
+            },
+            get_balance: {
+                label: 'Get Balance',
+                category: 'Trading',
+                color: '#B71C1C',
+                icon: '[$]',
+                endpoint: '/api/balance',
+                method: 'GET',
+                defaultProps: {
+                    name: 'GetBalance',
+                    asset: '',
+                    auth: 'required',
+                    outputMode: 'save',
+                    outputVar: 'balance'
+                },
+                propFields: [
+                    ['asset', 'Asset (optional)'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable']
+                ],
+                inputFields: []
+            },
+            get_order_status: {
+                label: 'Order Status',
+                category: 'Trading',
+                color: '#B71C1C',
+                icon: '[?]',
+                endpoint: '/api/order',
+                method: 'GET',
+                defaultProps: {
+                    name: 'GetOrderStatus',
+                    orderId: '',
+                    auth: 'required',
+                    outputMode: 'json',
+                    outputVar: ''
+                },
+                propFields: [
+                    ['orderId', 'Order ID'],
+                    ['auth', 'Auth'],
+                    ['outputMode', 'Output Mode'],
+                    ['outputVar', 'Output Variable (if save)']
+                ],
+                inputFields: ['orderId']
+            },
+
+            // ===== LOGIC BLOCKS =====
+            if_condition: {
+                label: 'If Condition',
+                category: 'Logic',
+                color: '#E65100',
+                icon: '[IF]',
+                endpoint: null,
+                method: null,
+                defaultProps: {
+                    name: 'IfCondition',
+                    condition: 'price > 40000'
+                },
+                propFields: [
+                    ['condition', 'Condition']
+                ],
+                inputFields: []
+            },
+            loop: {
+                label: 'Loop',
+                category: 'Logic',
+                color: '#E65100',
+                icon: '[LP]',
+                endpoint: null,
+                method: null,
+                defaultProps: {
+                    name: 'Loop',
+                    variable: 'item',
+                    collection: 'items'
+                },
+                propFields: [
+                    ['variable', 'Loop Variable'],
+                    ['collection', 'Collection/Range']
+                ],
+                inputFields: []
+            },
+            try_catch: {
+                label: 'Try/Catch',
+                category: 'Logic',
+                color: '#E65100',
+                icon: '[TC]',
+                endpoint: null,
+                method: null,
+                defaultProps: {
+                    name: 'TryCatch'
+                },
+                propFields: [],
+                inputFields: []
+            },
+
+            // ===== OUTPUT BLOCKS =====
+            print_output: {
+                label: 'Print',
+                category: 'Output',
+                color: '#2E7D32',
+                icon: '[PR]',
+                endpoint: null,
+                method: null,
+                defaultProps: {
+                    name: 'PrintOutput',
+                    message: 'Operation completed'
+                },
+                propFields: [
+                    ['message', 'Message']
+                ],
+                inputFields: []
+            },
+            save_json: {
+                label: 'Save JSON',
+                category: 'Output',
+                color: '#2E7D32',
+                icon: '[SJ]',
+                endpoint: null,
+                method: null,
+                defaultProps: {
+                    name: 'SaveJson',
+                    outputVar: 'result'
+                },
+                propFields: [
+                    ['outputVar', 'Variable Name']
+                ],
+                inputFields: []
+            }
+        };
+
+        // ============================================================================
+        // WORKFLOW STATE
+        // ============================================================================
+
+        const WorkflowState = {
+            nodes: new Map(),
+            edges: [],
+            selectedNodeId: null,
+            nextId: 1,
+
+            addNode(blockType, x, y) {
+                const nodeId = `node_${this.nextId++}`;
+                const schema = BLOCK_REGISTRY[blockType];
+                const node = {
+                    id: nodeId,
+                    blockType,
+                    x,
+                    y,
+                    width: 200,
+                    height: 80,
+                    props: { ...schema.defaultProps }
+                };
+                this.nodes.set(nodeId, node);
+                return nodeId;
+            },
+
+            addEdge(fromNodeId, toNodeId) {
+                const edgeId = `edge_${this.nextId++}`;
+                const edge = { id: edgeId, fromNodeId, toNodeId };
+                this.edges.push(edge);
+                return edgeId;
+            },
+
+            deleteNode(nodeId) {
+                this.nodes.delete(nodeId);
+                this.edges = this.edges.filter(e => e.fromNodeId !== nodeId && e.toNodeId !== nodeId);
+                if (this.selectedNodeId === nodeId) {
+                    this.selectedNodeId = null;
+                }
+            },
+
+            deleteEdge(edgeId) {
+                this.edges = this.edges.filter(e => e.id !== edgeId);
+            },
+
+            clear() {
+                this.nodes.clear();
+                this.edges = [];
+                this.selectedNodeId = null;
+                this.nextId = 1;
+            }
+        };
+
+        // ============================================================================
+        // DRAG STATE
+        // ============================================================================
+
+        const DRAG_STATE = {
+            mode: null,  // 'MOVING_BLOCK' | 'DRAWING_EDGE'
+            nodeId: null,
+            startX: 0,
+            startY: 0,
+            startNodeX: 0,
+            startNodeY: 0,
+            fromNodeId: null,
+            previewLineEl: null
+        };
+
+        // ============================================================================
+        // INITIALIZATION
+        // ============================================================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initPalette();
+            setupCanvasEvents();
+            loadExamples();
+            updateStatus();
+        });
+
+        function initPalette() {
+            const sidebar = document.getElementById('sidebar');
+            const categories = new Map();
+
+            // Group blocks by category
+            for (const [key, schema] of Object.entries(BLOCK_REGISTRY)) {
+                if (!categories.has(schema.category)) {
+                    categories.set(schema.category, []);
+                }
+                categories.get(schema.category).push({ key, schema });
+            }
+
+            // Render categories and blocks
+            for (const [category, blocks] of categories) {
+                const header = document.createElement('div');
+                header.className = 'category-header';
+                header.textContent = category;
+                sidebar.appendChild(header);
+
+                for (const { key, schema } of blocks) {
+                    const blockEl = document.createElement('div');
+                    blockEl.className = 'palette-block';
+                    blockEl.draggable = true;
+                    blockEl.textContent = `${schema.icon} ${schema.label}`;
+                    blockEl.dataset.blockType = key;
+
+                    blockEl.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.effectAllowed = 'copy';
+                        e.dataTransfer.setData('blockType', key);
+                        blockEl.classList.add('dragging');
+                    });
+
+                    blockEl.addEventListener('dragend', () => {
+                        blockEl.classList.remove('dragging');
+                    });
+
+                    sidebar.appendChild(blockEl);
+                }
+            }
+        }
+
+        function setupCanvasEvents() {
+            const container = document.getElementById('canvas-container');
+
+            container.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'copy';
+            });
+
+            container.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const blockType = e.dataTransfer.getData('blockType');
+                if (!blockType) return;
+
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const nodeId = WorkflowState.addNode(blockType, x, y);
+                renderBlock(nodeId);
+                renderEdges();
+                updateStatus();
+            });
+
+            // Delete key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Delete' && WorkflowState.selectedNodeId) {
+                    WorkflowState.deleteNode(WorkflowState.selectedNodeId);
+                    render();
+                    updateStatus();
+                }
+            });
+        }
+
+        function renderBlock(nodeId) {
+            const node = WorkflowState.nodes.get(nodeId);
+            const schema = BLOCK_REGISTRY[node.blockType];
+            const canvas = document.getElementById('canvas');
+
+            // Remove if exists
+            const existing = document.getElementById(`block-${nodeId}`);
+            if (existing) existing.remove();
+
+            // Create block element
+            const blockEl = document.createElement('div');
+            blockEl.id = `block-${nodeId}`;
+            blockEl.className = 'block';
+            blockEl.dataset.nodeId = nodeId;
+            blockEl.style.left = `${node.x}px`;
+            blockEl.style.top = `${node.y}px`;
+            blockEl.style.width = `${node.width}px`;
+
+            if (WorkflowState.selectedNodeId === nodeId) {
+                blockEl.classList.add('selected');
+            }
+
+            // Header
+            const header = document.createElement('div');
+            header.className = 'block-header';
+            header.style.background = schema.color;
+            header.innerHTML = `<span class="block-icon">${schema.icon}</span><span class="block-title">${node.props.name || schema.label}</span>`;
+
+            // Props summary
+            const propsDiv = document.createElement('div');
+            propsDiv.className = 'block-props';
+            if (schema.endpoint) {
+                propsDiv.innerHTML += `<span class="prop-row">${schema.method} ${schema.endpoint}</span>`;
+            }
+            if (node.props.pair) {
+                propsDiv.innerHTML += `<span class="prop-row">pair: ${node.props.pair}</span>`;
+            }
+            if (node.props.amount) {
+                propsDiv.innerHTML += `<span class="prop-row">amount: ${node.props.amount}</span>`;
+            }
+
+            blockEl.appendChild(header);
+            blockEl.appendChild(propsDiv);
+
+            // Create ports container
+            const portsDiv = document.createElement('div');
+            portsDiv.className = 'block-ports';
+
+            // Input port
+            const inputPort = document.createElement('div');
+            inputPort.className = 'port port-input';
+            inputPort.dataset.port = 'input';
+            inputPort.dataset.node = nodeId;
+            portsDiv.appendChild(inputPort);
+
+            // Output port
+            const outputPort = document.createElement('div');
+            outputPort.className = 'port port-output';
+            outputPort.dataset.port = 'output';
+            outputPort.dataset.node = nodeId;
+            portsDiv.appendChild(outputPort);
+
+            blockEl.appendChild(portsDiv);
+
+            // Events
+            header.addEventListener('mousedown', (e) => {
+                DRAG_STATE.mode = 'MOVING_BLOCK';
+                DRAG_STATE.nodeId = nodeId;
+                DRAG_STATE.startX = e.clientX;
+                DRAG_STATE.startY = e.clientY;
+                DRAG_STATE.startNodeX = node.x;
+                DRAG_STATE.startNodeY = node.y;
+            });
+
+            blockEl.addEventListener('click', (e) => {
+                if (e.target === header || header.contains(e.target)) return;
+                WorkflowState.selectedNodeId = nodeId;
+                render();
+                populatePropertyPanel(nodeId);
+            });
+
+            outputPort.addEventListener('mousedown', (e) => {
+                e.stopPropagation();
+                DRAG_STATE.mode = 'DRAWING_EDGE';
+                DRAG_STATE.fromNodeId = nodeId;
+
+                const svg = document.getElementById('svg-layer');
+                const preview = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                preview.className = 'edge-preview';
+                preview.setAttribute('x1', node.x + node.width);
+                preview.setAttribute('y1', node.y + node.height / 2);
+                preview.setAttribute('x2', e.clientX);
+                preview.setAttribute('y2', e.clientY);
+                svg.appendChild(preview);
+                DRAG_STATE.previewLineEl = preview;
+            });
+
+            canvas.appendChild(blockEl);
+        }
+
+        function renderEdges() {
+            const svg = document.getElementById('svg-layer');
+            svg.querySelectorAll('path.edge-path').forEach(p => p.remove());
+
+            for (const edge of WorkflowState.edges) {
+                const fromNode = WorkflowState.nodes.get(edge.fromNodeId);
+                const toNode = WorkflowState.nodes.get(edge.toNodeId);
+                if (!fromNode || !toNode) continue;
+
+                const fromX = fromNode.x + fromNode.width;
+                const fromY = fromNode.y + fromNode.height / 2;
+                const toX = toNode.x;
+                const toY = toNode.y + toNode.height / 2;
+
+                const dx = (toX - fromX) * 0.5;
+                const pathD = `M${fromX},${fromY} C${fromX+dx},${fromY} ${toX-dx},${toY} ${toX},${toY}`;
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathD);
+                path.className = 'edge-path';
+                path.dataset.edgeId = edge.id;
+
+                path.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    WorkflowState.deleteEdge(edge.id);
+                    render();
+                    updateStatus();
+                });
+
+                svg.appendChild(path);
+            }
+        }
+
+        function populatePropertyPanel(nodeId) {
+            const node = WorkflowState.nodes.get(nodeId);
+            const schema = BLOCK_REGISTRY[node.blockType];
+            const panel = document.getElementById('property-panel');
+
+            panel.innerHTML = `<div id="prop-title">${node.props.name}</div><div id="prop-fields"></div>`;
+            const fieldsDiv = document.getElementById('prop-fields');
+
+            // Name field
+            const nameField = createPropField('name', 'Operation Name', node.props.name);
+            fieldsDiv.appendChild(nameField);
+
+            // Schema fields
+            for (const [key, label] of schema.propFields) {
+                const field = createPropField(key, label, node.props[key] || '');
+                fieldsDiv.appendChild(field);
+            }
+        }
+
+        function createPropField(key, label, value) {
+            const div = document.createElement('div');
+            div.className = 'prop-field';
+            div.innerHTML = `
+                <label class="prop-label">${label}</label>
+                <input class="prop-input" type="text" data-prop="${key}" value="${value}">
+            `;
+            const input = div.querySelector('input');
+            input.addEventListener('input', (e) => {
+                const node = WorkflowState.nodes.get(WorkflowState.selectedNodeId);
+                node.props[key] = e.target.value;
+                render();
+            });
+            return div;
+        }
+
+        function generateAndShow() {
+            const lcx = generateLCX();
+            const container = document.getElementById('output-panel-container');
+            const code = document.getElementById('output-code');
+            code.textContent = lcx;
+            container.classList.add('open');
+        }
+
+        function toggleOutputPanel() {
+            const container = document.getElementById('output-panel-container');
+            container.classList.toggle('open');
+        }
+
+        function generateLCX() {
+            if (WorkflowState.nodes.size === 0) {
+                return '# No blocks on canvas';
+            }
+
+            // Build adjacency map
+            const adj = new Map();
+            for (const node of WorkflowState.nodes.values()) {
+                adj.set(node.id, []);
+            }
+            for (const edge of WorkflowState.edges) {
+                adj.get(edge.fromNodeId).push(edge.toNodeId);
+            }
+
+            // Find root nodes (no incoming edges)
+            const incomingCount = new Map();
+            for (const node of WorkflowState.nodes.values()) {
+                incomingCount.set(node.id, 0);
+            }
+            for (const edge of WorkflowState.edges) {
+                incomingCount.set(edge.toNodeId, (incomingCount.get(edge.toNodeId) || 0) + 1);
+            }
+
+            const roots = Array.from(WorkflowState.nodes.values())
+                .filter(n => incomingCount.get(n.id) === 0)
+                .map(n => n.id);
+
+            const lines = [];
+
+            if (roots.length === 0 && WorkflowState.nodes.size > 0) {
+                // Cycle detected or all nodes are isolated
+                for (const node of WorkflowState.nodes.values()) {
+                    lines.push(...emitOperation(node));
+                    lines.push('');
+                }
+            } else {
+                // Process each root and its chain
+                for (const rootId of roots) {
+                    const chain = buildChain(rootId, adj);
+                    if (chain.length === 1) {
+                        const node = WorkflowState.nodes.get(chain[0]);
+                        if (node) {
+                            lines.push(...emitOperation(node));
+                            lines.push('');
+                        }
+                    } else {
+                        lines.push(...emitSequenceWorkflow(chain));
+                        lines.push('');
+                    }
+                }
+            }
+
+            return lines.join('\n').trim();
+        }
+
+        function buildChain(startId, adj) {
+            const chain = [startId];
+            let current = startId;
+            while (adj.get(current).length > 0) {
+                const next = adj.get(current)[0];
+                chain.push(next);
+                current = next;
+            }
+            return chain;
+        }
+
+        function emitOperation(node) {
+            const schema = BLOCK_REGISTRY[node.blockType];
+            const lines = [];
+            const opName = toPascalCase(node.props.name);
+
+            lines.push(`${opName}:`);
+
+            if (schema.endpoint) {
+                lines.push(`  endpoint: ${schema.method} ${schema.endpoint}`);
+            }
+
+            if (node.props.auth && node.props.auth !== 'none') {
+                lines.push(`  auth: ${node.props.auth}`);
+            }
+
+            const inputs = schema.inputFields.filter(f => node.props[f]).map(f => node.props[f]);
+            if (inputs.length > 0) {
+                lines.push(`  input: ${inputs.join(', ')}`);
+            }
+
+            if (node.props.outputMode) {
+                if (node.props.outputMode === 'save' && node.props.outputVar) {
+                    lines.push(`  output: save ${node.props.outputVar}`);
+                } else {
+                    lines.push(`  output: ${node.props.outputMode}`);
+                }
+            } else if (schema.endpoint) {
+                lines.push(`  output: json`);
+            }
+
+            return lines;
+        }
+
+        function emitSequenceWorkflow(chain) {
+            if (chain.length < 2) {
+                const node = WorkflowState.nodes.get(chain[0]);
+                return node ? emitOperation(node) : [];
+            }
+
+            const lines = [];
+            const names = chain.map(id => {
+                const node = WorkflowState.nodes.get(id);
+                return node ? toPascalCase(node.props.name) : 'Operation';
+            });
+            const workflowName = names.join('');
+
+            lines.push(`${workflowName}:`);
+            lines.push(`  sequence:`);
+
+            let step = 1;
+            for (const nodeId of chain) {
+                const node = WorkflowState.nodes.get(nodeId);
+                if (!node) continue;
+
+                const schema = BLOCK_REGISTRY[node.blockType];
+                const opName = toPascalCase(node.props.name);
+
+                if (schema.endpoint) {
+                    lines.push(`    ${step}. ${opName}:`);
+                    lines.push(`         endpoint: ${schema.method} ${schema.endpoint}`);
+                    if (node.props.auth && node.props.auth !== 'none') {
+                        lines.push(`         auth: ${node.props.auth}`);
+                    }
+                    const inputs = schema.inputFields.filter(f => node.props[f]).map(f => node.props[f]);
+                    if (inputs.length > 0) {
+                        lines.push(`         input: ${inputs.join(', ')}`);
+                    }
+                    if (node.props.outputMode) {
+                        if (node.props.outputMode === 'save' && node.props.outputVar) {
+                            lines.push(`         output: save ${node.props.outputVar}`);
+                        } else {
+                            lines.push(`         output: ${node.props.outputMode}`);
+                        }
+                    } else {
+                        lines.push(`         output: json`);
+                    }
+                } else if (node.blockType === 'print_output') {
+                    lines.push(`    ${step}. print "${node.props.message}"`);
+                } else {
+                    lines.push(`    ${step}. ${opName}`);
+                }
+
+                step++;
+            }
+
+            return lines;
+        }
+
+        function toPascalCase(str) {
+            return str
+                .replace(/\s+/g, '_')
+                .replace(/^[a-z]/, c => c.toUpperCase())
+                .replace(/_([a-z])/g, (_, c) => c.toUpperCase())
+                .replace(/_/g, '');
+        }
+
+        function openInCompiler() {
+            const lcx = generateLCX();
+            if (!lcx.trim() || lcx === '# No blocks on canvas') {
+                alert('Canvas is empty. Add some blocks first.');
+                return;
+            }
+            localStorage.setItem('lcx_visual_import', lcx);
+            window.location.href = '/';
+        }
+
+        function clearCanvas() {
+            if (confirm('Clear all blocks? This cannot be undone.')) {
+                WorkflowState.clear();
+                render();
+                updateStatus();
+            }
+        }
+
+        function updateStatus() {
+            const status = document.getElementById('toolbar-status');
+            status.textContent = `${WorkflowState.nodes.size} blocks, ${WorkflowState.edges.length} connections`;
+        }
+
+        function render() {
+            const canvas = document.getElementById('canvas');
+            canvas.innerHTML = '';
+            for (const nodeId of WorkflowState.nodes.keys()) {
+                renderBlock(nodeId);
+            }
+            renderEdges();
+        }
+
+        // ============================================================================
+        // GLOBAL MOUSE EVENTS FOR DRAG & DROP
+        // ============================================================================
+
+        document.addEventListener('mousemove', (e) => {
+            if (DRAG_STATE.mode === 'MOVING_BLOCK' && DRAG_STATE.nodeId) {
+                const dx = e.clientX - DRAG_STATE.startX;
+                const dy = e.clientY - DRAG_STATE.startY;
+                const node = WorkflowState.nodes.get(DRAG_STATE.nodeId);
+                node.x = DRAG_STATE.startNodeX + dx;
+                node.y = DRAG_STATE.startNodeY + dy;
+
+                const blockEl = document.getElementById(`block-${DRAG_STATE.nodeId}`);
+                if (blockEl) {
+                    blockEl.style.left = `${node.x}px`;
+                    blockEl.style.top = `${node.y}px`;
+                }
+                renderEdges();
+            } else if (DRAG_STATE.mode === 'DRAWING_EDGE' && DRAG_STATE.previewLineEl) {
+                DRAG_STATE.previewLineEl.setAttribute('x2', e.clientX);
+                DRAG_STATE.previewLineEl.setAttribute('y2', e.clientY);
+            }
+        });
+
+        document.addEventListener('mouseup', (e) => {
+            if (DRAG_STATE.mode === 'DRAWING_EDGE' && DRAG_STATE.previewLineEl) {
+                // Check if mouseup on input port
+                const target = document.elementFromPoint(e.clientX, e.clientY);
+                const inputPort = target?.closest('.port-input');
+
+                if (inputPort && inputPort.dataset.node !== DRAG_STATE.fromNodeId) {
+                    const toNodeId = inputPort.dataset.node;
+                    WorkflowState.addEdge(DRAG_STATE.fromNodeId, toNodeId);
+                    render();
+                    updateStatus();
+                }
+
+                DRAG_STATE.previewLineEl.remove();
+                DRAG_STATE.previewLineEl = null;
+            }
+
+            DRAG_STATE.mode = null;
+            DRAG_STATE.nodeId = null;
+            DRAG_STATE.fromNodeId = null;
+        });
+
+        // ============================================================================
+        // EXAMPLES MANAGEMENT
+        // ============================================================================
+
+        function loadExamples() {
+            fetch('/examples')
+                .then(r => r.json())
+                .then(data => {
+                    const select = document.getElementById('examples-select');
+                    if (data.examples && Array.isArray(data.examples)) {
+                        data.examples.forEach(example => {
+                            const opt = document.createElement('option');
+                            opt.value = example.name;
+                            opt.textContent = example.name.replace(/_/g, ' ');
+                            select.appendChild(opt);
+                        });
+                    }
+                })
+                .catch(e => console.error('Failed to load examples:', e));
+
+            document.getElementById('examples-select').addEventListener('change', (e) => {
+                if (e.target.value) {
+                    showExamplePreview(e.target.value);
+                } else {
+                    document.getElementById('example-content').classList.remove('show');
+                }
+            });
+        }
+
+        function showExamplePreview(exampleName) {
+            fetch(`/example/${exampleName}`)
+                .then(r => r.json())
+                .then(data => {
+                    const preview = document.getElementById('example-content');
+                    preview.textContent = data.content;
+                    preview.classList.add('show');
+                })
+                .catch(e => {
+                    console.error('Failed to load example:', e);
+                    document.getElementById('example-content').classList.remove('show');
+                });
+        }
+
+        function loadSelectedExample() {
+            const select = document.getElementById('examples-select');
+            const exampleName = select.value;
+
+            if (!exampleName) {
+                alert('Please select an example first');
+                return;
+            }
+
+            fetch(`/example/${exampleName}`)
+                .then(r => r.json())
+                .then(data => {
+                    // Clear canvas first
+                    WorkflowState.clear();
+                    render();
+
+                    // Parse .lcx content and build blocks
+                    parseExampleDSL(data.content);
+
+                    // Store endpoints in localStorage for main dashboard
+                    const endpoints = extractEndpoints(data.content);
+                    if (endpoints.length > 0) {
+                        localStorage.setItem('loaded_example', exampleName);
+                        localStorage.setItem('loaded_endpoints', JSON.stringify(endpoints));
+                        console.log(`[LOAD] Stored ${endpoints.length} endpoints for testing on main dashboard`);
+                    }
+
+                    // Auto-compile the example
+                    compileExample(data.content, exampleName);
+                })
+                .catch(e => {
+                    alert('Failed to load example: ' + e.message);
+                });
+        }
+
+        function parseExampleDSL(dslContent) {
+            // Simple parser to extract operations and create blocks
+            const lines = dslContent.split('\n');
+            let currentOp = null;
+            let yOffset = 50;
+            const blockMap = new Map(); // operation name -> node id
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                const trimmed = line.trim();
+
+                // Skip comments and empty lines
+                if (!trimmed || trimmed.startsWith('#')) continue;
+
+                // Operation definition (not indented, ends with ':')
+                if (!line.startsWith(' ') && trimmed.endsWith(':') && !trimmed.startsWith('endpoint:')) {
+                    const opName = trimmed.slice(0, -1);
+
+                    // Try to match with block types
+                    let blockType = null;
+                    let matchedKey = null;
+
+                    // Simple matching by endpoint or operation name
+                    const opLower = opName.toLowerCase();
+                    for (const [key, schema] of Object.entries(BLOCK_REGISTRY)) {
+                        const labelLower = schema.label.toLowerCase();
+                        if (opLower.includes(labelLower.replace(/\s+/g, '')) || labelLower.includes(opLower.replace(/\s+/g, ''))) {
+                            blockType = key;
+                            matchedKey = key;
+                            break;
+                        }
+                    }
+
+                    // Fallback: scan next lines for endpoint clue
+                    if (!blockType && i + 1 < lines.length) {
+                        let j = i + 1;
+                        while (j < lines.length && lines[j].startsWith('  ')) {
+                            const propLine = lines[j].trim();
+                            if (propLine.includes('endpoint:') || propLine.includes('GET /api/tickers')) {
+                                if (propLine.includes('tickers')) blockType = 'get_tickers';
+                                else if (propLine.includes('pairs')) blockType = 'get_tickers'; // fallback
+                                else if (propLine.includes('book')) blockType = 'get_order_book';
+                                else if (propLine.includes('trades')) blockType = 'get_trades';
+                                else if (propLine.includes('kline')) blockType = 'get_candles';
+                                else if (propLine.includes('pair') && propLine.includes('GET')) blockType = 'get_pair';
+                                break;
+                            }
+                            j++;
+                        }
+                    }
+
+                    if (!blockType) {
+                        blockType = 'print_output'; // default fallback
+                    }
+
+                    // Create node
+                    const nodeId = WorkflowState.addNode(blockType, 20, yOffset);
+                    const node = WorkflowState.nodes.get(nodeId);
+                    node.props.name = opName;
+                    blockMap.set(opName, nodeId);
+
+                    // Parse operation properties
+                    let j = i + 1;
+                    while (j < lines.length && lines[j].startsWith('  ')) {
+                        const propLine = lines[j].trim();
+
+                        if (propLine.startsWith('endpoint:')) {
+                            const parts = propLine.replace('endpoint:', '').trim().split(/\s+/);
+                            if (parts.length >= 2) {
+                                node.props.endpoint = parts.slice(1).join(' ');
+                            }
+                        } else if (propLine.startsWith('auth:')) {
+                            node.props.auth = propLine.replace('auth:', '').trim();
+                        } else if (propLine.startsWith('input:')) {
+                            const inputs = propLine.replace('input:', '').trim().split(',').map(s => s.trim());
+                            inputs.forEach((inp, idx) => {
+                                const fieldKey = BLOCK_REGISTRY[blockType]?.inputFields?.[idx];
+                                if (fieldKey) node.props[fieldKey] = inp;
+                            });
+                        } else if (propLine.startsWith('output:')) {
+                            const parts = propLine.replace('output:', '').trim().split(/\s+/);
+                            node.props.outputMode = parts[0];
+                            if (parts.length > 1) {
+                                node.props.outputVar = parts.slice(1).join(' ');
+                            }
+                        } else if (propLine.includes('pair') && propLine.includes(':')) {
+                            const val = propLine.split(':')[1]?.trim();
+                            if (val) node.props.pair = val;
+                        }
+
+                        j++;
+                    }
+
+                    yOffset += 120;
+                    i = j - 1;
+                }
+            }
+
+            render();
+            updateStatus();
+        }
+
+        function extractEndpoints(dslContent) {
+            const endpoints = [];
+            const endpointSet = new Set();
+            const lines = dslContent.split('\n');
+
+            for (const line of lines) {
+                const trimmed = line.trim();
+                if (trimmed.startsWith('endpoint:')) {
+                    const endpoint = trimmed.replace('endpoint:', '').trim();
+                    if (endpoint && !endpointSet.has(endpoint)) {
+                        endpointSet.add(endpoint);
+                        endpoints.push(endpoint);
+                    }
+                }
+            }
+
+            return endpoints;
+        }
+
+        function compileExample(dslContent, exampleName) {
+            console.log(`[COMPILE] Compiling ${exampleName}...`);
+
+            fetch('/compile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ source: dslContent })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    console.log(`[COMPILE] Success for ${exampleName}:`, data);
+                    showCompileResults(exampleName, data);
+                })
+                .catch(e => {
+                    console.error('[COMPILE] Error:', e);
+                });
+        }
+
+        function showCompileResults(exampleName, data) {
+            if (!data.results) return;
+
+            const container = document.getElementById('output-panel-container');
+            const code = document.getElementById('output-code');
+
+            let output = `=== Compilation Results: ${exampleName} ===\n\n`;
+            output += `Operations parsed: ${data.op_count || 0}\n`;
+            output += `Languages generated: ${Object.keys(data.results || {}).length}\n\n`;
+
+            if (data.generation_errors && Object.keys(data.generation_errors).length > 0) {
+                output += `--- Generation Errors ---\n`;
+                for (const [lang, error] of Object.entries(data.generation_errors)) {
+                    output += `${lang}: ${error}\n`;
+                }
+                output += '\n';
+            }
+
+            output += `--- Generated Languages ---\n`;
+            for (const [lang, code] of Object.entries(data.results || {})) {
+                const lines = code.split('\n').length;
+                const preview = code.substring(0, 80).replace(/\n/g, ' ') + '...';
+                output += `[OK] ${lang} (${lines} lines)\n`;
+                output += `    ${preview}\n`;
+            }
+
+            code.textContent = output;
+            container.classList.add('open');
+        }
+    </script>
+</body>
+</html>

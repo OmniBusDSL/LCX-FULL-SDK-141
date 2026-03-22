@@ -1,0 +1,35 @@
+# LCX DSL Example: Market Data Fetcher
+# This example demonstrates fetching market data without authentication
+# Note: LCX uses format like BTC/USDC, ETH/BTC, LCX/USDC for pairs
+
+# Get all market tickers
+FetchAllTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+# Get all trading pairs
+FetchAllPairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: print
+
+# Complete market overview workflow
+MarketOverview:
+  sequence:
+    # Step 1: Fetch all tickers
+    1. FetchAllTickers:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save tickers_data
+
+    # Step 2: Get all available trading pairs
+    2. GetAllPairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save pairs_data
+
+    # Step 3: Print summary
+    3. print "Market data fetched successfully"
+       print "All tickers retrieved"
+       print "All trading pairs available"

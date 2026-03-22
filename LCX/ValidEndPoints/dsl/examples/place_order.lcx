@@ -1,0 +1,26 @@
+# LCX DSL Example: Place and Monitor Orders
+
+GetMarketTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+GetAvailablePairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+OrderingWorkflow:
+  sequence:
+    1. CheckMarket:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save market_snapshot
+
+    2. GetPairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save available_pairs
+
+    3. print "Market check complete"
+       print "Order workflow ready"

@@ -1,0 +1,59 @@
+Imports System.Net.Http
+
+Function fetch_all_tickers() As String
+  Dim url As String = "https://exchange-api.lcx.com/api/tickers"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+Function get_ticker_for_pair(pair) As String
+  Dim url As String = "https://exchange-api.lcx.com/api/ticker"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+Function fetch_all_pairs() As String
+  Dim url As String = "https://exchange-api.lcx.com/api/pairs"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+Function get_pair_info(pair_symbol) As String
+  Dim url As String = "https://exchange-api.lcx.com/api/pair/BTC/USDC"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+Function get_order_book(pair) As String
+  Dim url As String = "https://exchange-api.lcx.com/api/book"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+Function get_recent_trades(pair, offset) As String
+  Dim url As String = "https://exchange-api.lcx.com/api/trades"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+Function get_candle_data(pair, resolution, from_ts, to_ts) As String
+  Dim url As String = "https://api-kline.lcx.com/v1/market/kline"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+Function market_overview() As String
+  Dim url As String = "https://exchange-api.lcx.com/api/book"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+# Workflow: MarketOverview (sequence)
+
+Function get_trades() As String
+  Dim url As String = "https://exchange-api.lcx.com/api/trades"
+  Dim client As New HttpClient()
+  Dim response = client.GetAsync(url).Result
+  Return response.Content.ReadAsStringAsync().Result
+End Function
+# None method not supported for vbnet

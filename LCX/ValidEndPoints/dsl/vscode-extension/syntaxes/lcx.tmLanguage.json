@@ -1,0 +1,102 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "LCX DSL",
+  "scopeName": "source.lcx",
+  "fileTypes": [
+    "lcx"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#methods"
+    },
+    {
+      "include": "#endpoints"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.lcx",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.lcx",
+          "match": "\\b(operation|loop|if|else|try|catch|finally|body|print)\\b"
+        },
+        {
+          "name": "keyword.other.lcx",
+          "match": "\\b(endpoint|input|output|auth|required|none|json|print|save)\\b"
+        },
+        {
+          "name": "constant.language.lcx",
+          "match": "\\b(true|false|null)\\b"
+        }
+      ]
+    },
+    "methods": {
+      "patterns": [
+        {
+          "name": "keyword.other.method.lcx",
+          "match": "\\b(GET|POST|PUT|DELETE|PATCH|OPTIONS|HEAD)\\b"
+        },
+        {
+          "name": "keyword.other.action.lcx",
+          "match": "\\b(BUY|SELL|BALANCE|CANCEL|LIMIT|MARKET)\\b"
+        }
+      ]
+    },
+    "endpoints": {
+      "patterns": [
+        {
+          "name": "string.other.endpoint.lcx",
+          "match": "/[a-zA-Z0-9/_-]*"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.lcx",
+          "begin": "\"",
+          "end": "\"",
+          "escapes": {
+            "match": "\\\\."
+          }
+        },
+        {
+          "name": "string.quoted.single.lcx",
+          "begin": "'",
+          "end": "'",
+          "escapes": {
+            "match": "\\\\."
+          }
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.lcx",
+          "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+        }
+      ]
+    }
+  }
+}

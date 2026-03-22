@@ -1,0 +1,80 @@
+# LCX DSL Example: WebSocket Real-Time Data Streams
+# This example demonstrates subscribing to real-time market data via WebSocket
+# Note: WebSocket requires maintaining a persistent connection
+
+# Subscribe to real-time ticker updates for a pair
+SubscribeTickerStream:
+  endpoint: WS /ticker
+  auth: none
+  input: pair, callback
+  output: stream
+
+# Subscribe to real-time order book updates
+SubscribeOrderBookStream:
+  endpoint: WS /book
+  auth: none
+  input: pair, callback
+  output: stream
+
+# Subscribe to real-time trade stream
+SubscribeTradeStream:
+  endpoint: WS /trades
+  auth: none
+  input: pair, callback
+  output: stream
+
+# Subscribe to multiple pairs simultaneously
+SubscribeMultiplePairs:
+  sequence:
+    # Step 1: Connect to WebSocket
+    1. Connect:
+         endpoint: WS /connect
+         auth: none
+         output: connection
+
+    # Step 2: Subscribe to BTC/USDC ticker
+    2. SubscribeBTC:
+         endpoint: WS /ticker
+         auth: none
+         input: pair
+         output: stream
+
+    # Step 3: Subscribe to ETH/BTC ticker
+    3. SubscribeETH:
+         endpoint: WS /ticker
+         auth: none
+         input: pair
+         output: stream
+
+    # Step 4: Maintain connection and handle messages
+    4. HandleMessages:
+         output: process
+
+# Real-time market data aggregator
+RealTimeMarketAggregator:
+  sequence:
+    1. InitializeConnections:
+         endpoint: WS /connect
+         auth: none
+         output: connection
+
+    2. StreamTickerData:
+         endpoint: WS /ticker
+         auth: none
+         input: pair
+         output: stream
+
+    3. StreamOrderBook:
+         endpoint: WS /book
+         auth: none
+         input: pair
+         output: stream
+
+    4. StreamTrades:
+         endpoint: WS /trades
+         auth: none
+         input: pair
+         output: stream
+
+    5. ProcessRealTimeData:
+         output: process

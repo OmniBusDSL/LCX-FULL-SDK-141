@@ -1,0 +1,18 @@
+import okhttp3.*
+import com.google.gson.*
+import kotlinx.coroutines.*
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+import java.util.*
+
+
+# WS method not supported for kotlin
+# WS method not supported for kotlin
+# WS method not supported for kotlin
+# WS method not supported for kotlin
+# WS method not supported for kotlin
+# None method not supported for kotlin
+# WS method not supported for kotlin
+# WS method not supported for kotlin
+# WS method not supported for kotlin
+# None method not supported for kotlin

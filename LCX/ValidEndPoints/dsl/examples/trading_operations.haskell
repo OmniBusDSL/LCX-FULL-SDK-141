@@ -1,0 +1,97 @@
+import Network.HTTP
+
+# POST method not supported for haskell
+# POST method not supported for haskell
+# POST method not supported for haskell
+# PUT method not supported for haskell
+# PUT method not supported for haskell
+# PUT method not supported for haskell
+# DELETE method not supported for haskell
+# DELETE method not supported for haskell
+get_all_open_orders :: String -> IO String
+get_all_open_orders params = do
+  let url = "https://exchange-api.lcx.com/api/open"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_open_orders_for_pair :: String -> IO String
+get_open_orders_for_pair params = do
+  let url = "https://exchange-api.lcx.com/api/open"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_open_orders_with_date_range :: String -> IO String
+get_open_orders_with_date_range params = do
+  let url = "https://exchange-api.lcx.com/api/open"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_single_order_status :: String -> IO String
+get_single_order_status params = do
+  let url = "https://exchange-api.lcx.com/api/order"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_complete_order_history :: String -> IO String
+get_complete_order_history params = do
+  let url = "https://exchange-api.lcx.com/api/orderHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_order_history_for_pair :: String -> IO String
+get_order_history_for_pair params = do
+  let url = "https://exchange-api.lcx.com/api/orderHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_order_history_by_status :: String -> IO String
+get_order_history_by_status params = do
+  let url = "https://exchange-api.lcx.com/api/orderHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_order_history_by_type :: String -> IO String
+get_order_history_by_type params = do
+  let url = "https://exchange-api.lcx.com/api/orderHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_filtered_order_history :: String -> IO String
+get_filtered_order_history params = do
+  let url = "https://exchange-api.lcx.com/api/orderHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_all_trade_history :: String -> IO String
+get_all_trade_history params = do
+  let url = "https://exchange-api.lcx.com/api/uHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_trade_history_for_pair :: String -> IO String
+get_trade_history_for_pair params = do
+  let url = "https://exchange-api.lcx.com/api/uHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_trade_history_by_date_range :: String -> IO String
+get_trade_history_by_date_range params = do
+  let url = "https://exchange-api.lcx.com/api/uHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+simple_buy_workflow :: String -> IO String
+simple_buy_workflow params = do
+  let url = "https://exchange-api.lcx.com/api/order"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+# Workflow: SimpleBuyWorkflow (sequence)
+
+# None method not supported for haskell
+# PUT method not supported for haskell
+get_history :: String -> IO String
+get_history params = do
+  let url = "https://exchange-api.lcx.com/api/orderHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_trades :: String -> IO String
+get_trades params = do
+  let url = "https://exchange-api.lcx.com/api/uHistory"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+# None method not supported for haskell
+# DELETE method not supported for haskell
+confirm_cancelled :: String -> IO String
+confirm_cancelled params = do
+  let url = "https://exchange-api.lcx.com/api/order"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+# None method not supported for haskell

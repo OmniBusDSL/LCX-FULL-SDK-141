@@ -1,0 +1,26 @@
+# Market Surveillance - Real-time market monitoring
+
+FetchAllTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+FetchAllPairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+MarketSurveillanceWorkflow:
+  sequence:
+    1. MonitorMarketTickers:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save tickers_snapshot
+
+    2. AnalyzePairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save pairs_snapshot
+
+    3. print "Market surveillance enabled"
+       print "Monitoring all available trading pairs"

@@ -1,0 +1,26 @@
+# Risk Management - Position monitoring and alert system
+
+GetTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+GetPairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+RiskMonitoringWorkflow:
+  sequence:
+    1. FetchMarketTickers:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save market_data
+
+    2. FetchAvailablePairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save pairs_data
+
+    3. print "Risk monitoring initialized"
+       print "Market data loaded for analysis"

@@ -1,0 +1,46 @@
+(ns api.client
+  (:require [clj-http.client :as http]
+            [cheshire.core :as json]))
+
+
+(defn fetch_all_pairs_data [pair]
+  ; GET /api/ticker
+  (let [url "https://exchange-api.lcx.com/api/ticker"]
+
+    (try
+      (-> (http/get url {:headers {"Content-Type" "application/json"}})
+          :body
+          json/parse-string
+          (#(do (println (json/generate-string %)) %))
+
+      (catch Exception e
+        (println "Error:" (.getMessage e))))))
+
+# Workflow: FetchAllPairsData (sequence)
+
+(defn get_ethusdc_ticker [pair]
+  ; GET /api/ticker
+  (let [url "https://exchange-api.lcx.com/api/ticker"]
+
+    (try
+      (-> (http/get url {:headers {"Content-Type" "application/json"}})
+          :body
+          json/parse-string
+          (#(do (println (json/generate-string %)) %))
+
+      (catch Exception e
+        (println "Error:" (.getMessage e))))))
+
+(defn get_lcxusdc_ticker [pair]
+  ; GET /api/ticker
+  (let [url "https://exchange-api.lcx.com/api/ticker"]
+
+    (try
+      (-> (http/get url {:headers {"Content-Type" "application/json"}})
+          :body
+          json/parse-string
+          (#(do (println (json/generate-string %)) %))
+
+      (catch Exception e
+        (println "Error:" (.getMessage e))))))
+

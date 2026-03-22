@@ -1,0 +1,25 @@
+# LCX DSL Example: Market Data Operations
+
+GetMarketTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+GetTradingPairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+MarketDataWorkflow:
+  sequence:
+    1. FetchTickers:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save market_tickers
+
+    2. FetchPairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save trading_pairs
+
+    3. print "Data fetched successfully"

@@ -1,0 +1,70 @@
+{
+  "name": "lcx-dsl",
+  "displayName": "LCX DSL Compiler",
+  "description": "Language support for LCX DSL with syntax highlighting, autocomplete, and error checking",
+  "version": "1.0.0",
+  "publisher": "lcx",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "lcx",
+    "dsl",
+    "api",
+    "compiler",
+    "trading"
+  ],
+  "activationEvents": [
+    "onLanguage:lcx"
+  ],
+  "main": "./client/out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "lcx",
+        "aliases": [
+          "LCX DSL",
+          "lcx"
+        ],
+        "extensions": [
+          ".lcx"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "lcx",
+        "scopeName": "source.lcx",
+        "path": "./syntaxes/lcx.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "lcx.compile",
+        "title": "LCX: Compile DSL"
+      },
+      {
+        "command": "lcx.compileAndRun",
+        "title": "LCX: Compile and Run"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "compile": "tsc -p ./client",
+    "watch": "tsc -w -p ./client",
+    "build": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.70.0",
+    "typescript": "^4.7.0",
+    "vscode-languageclient": "^8.0.0"
+  }
+}

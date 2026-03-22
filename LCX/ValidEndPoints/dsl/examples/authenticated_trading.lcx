@@ -1,0 +1,30 @@
+# LCX DSL Example: Trading Operations with Authentication
+# Demonstrates authenticated trading workflows
+
+# Get all available tickers
+GetAllTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+# Get all trading pairs
+GetTradingPairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+# Trading workflow
+TradingWorkflow:
+  sequence:
+    1. FetchMarketData:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save market_data
+
+    2. GetAvailablePairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save trading_pairs
+
+    3. print "Market data loaded"
+       print "Ready for trading"

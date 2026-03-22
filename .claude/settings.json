@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(sleep 5 echo \"=== SERVERS STATUS ===\" echo \"\" echo \"Flask Backend \\(5000\\):\" curl -s http://localhost:5000/health)"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+# LCX DSL Example: Portfolio Analysis
+
+FetchTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+FetchPairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+PortfolioAnalysis:
+  sequence:
+    1. AnalyzeTickers:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save ticker_data
+
+    2. AnalyzePairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save pair_data
+
+    3. print "Portfolio analysis complete"

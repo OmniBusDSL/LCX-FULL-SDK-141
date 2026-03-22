@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LCX DSL Schema",
+  "description": "JSON Schema for LCX Domain-Specific Language validation",
+  "type": "object",
+  "properties": {
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "endpoint", "method"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Operation name (alphanumeric, underscore allowed)"
+          },
+          "endpoint": {
+            "type": "string",
+            "pattern": "^/[a-zA-Z0-9/_-]*$",
+            "description": "API endpoint path"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+            "description": "HTTP method"
+          },
+          "input": {
+            "oneOf": [
+              {"type": "string"},
+              {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            ],
+            "description": "Input parameters"
+          },
+          "output": {
+            "type": "string",
+            "enum": ["json", "print", "save"],
+            "description": "Output format"
+          },
+          "auth": {
+            "type": "string",
+            "enum": ["none", "required"],
+            "description": "Authentication requirement"
+          },
+          "body": {
+            "type": "array",
+            "items": {"type": "object"},
+            "description": "Operation body with loops, conditionals, etc"
+          },
+          "action": {
+            "type": "string",
+            "enum": ["BUY", "SELL", "CANCEL", "BALANCE"],
+            "description": "Trading action if applicable"
+          },
+          "amount": {
+            "type": ["number", "string"],
+            "description": "Amount for BUY/SELL operations (required if action is BUY/SELL)"
+          }
+        }
+      }
+    }
+  },
+  "required": ["operations"],
+  "additionalProperties": false
+}

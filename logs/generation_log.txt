@@ -1,0 +1,1954 @@
+
+======================================================================
+[2026-03-21T23:01:10.995425] CLIENT: go
+Path: generated_sdks\client_go
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g go -o generated_sdks\client_go --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:11.133702] CLIENT: python
+Path: generated_sdks\client_python
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g python -o generated_sdks\client_python --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:11.519549] CLIENT: java
+Path: generated_sdks\client_java
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java -o generated_sdks\client_java --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:19.045210] CLIENT: typescript
+Path: generated_sdks\client_typescript
+Status: FAILED (rc=1)
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript -o generated_sdks\client_typescript --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+[main] ERROR o.o.codegen.DefaultCodegen - Error in generating `example` for the property response. Default to ERROR_TO_EXAMPLE_VALUE. Enable debugging for more info.
+[main] ERROR o.o.codegen.DefaultCodegen - Error in generating `example` for the property response. Default to ERROR_TO_EXAMPLE_VALUE. Enable debugging for more info.
+[main] ERROR o.o.codegen.DefaultCodegen - Error in generating `example` for the property SchemaFor200ResponseBodyApplicationJson. Default to ERROR_TO_EXAMPLE_VALUE. Ena
+
+======================================================================
+[2026-03-21T23:01:19.682840] CLIENT: php
+Path: generated_sdks\client_php
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php -o generated_sdks\client_php --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:21.428418] CLIENT: csharp
+Path: generated_sdks\client_csharp
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g csharp -o generated_sdks\client_csharp --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:27.890594] CLIENT: rust
+Path: generated_sdks\client_rust
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g rust -o generated_sdks\client_rust --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:28.154767] CLIENT: kotlin
+Path: generated_sdks\client_kotlin
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g kotlin -o generated_sdks\client_kotlin --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:29.178158] CLIENT: javascript
+Path: generated_sdks\client_javascript
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g javascript -o generated_sdks\client_javascript --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:35.071438] CLIENT: dart
+Path: generated_sdks\client_dart
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g dart -o generated_sdks\client_dart --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:36.537253] CLIENT: c
+Path: generated_sdks\client_c
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g c -o generated_sdks\client_c --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:36.545896] CLIENT: ruby
+Path: generated_sdks\client_ruby
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g ruby -o generated_sdks\client_ruby --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:44.595553] CLIENT: r
+Path: generated_sdks\client_r
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g r -o generated_sdks\client_r --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model Orderbook
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model Orderbook
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model Ticker
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model Ticker
+[main] ERROR o.o.c
+
+======================================================================
+[2026-03-21T23:01:44.773661] CLIENT: lua
+Path: generated_sdks\client_lua
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g lua -o generated_sdks\client_lua --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:44.860114] CLIENT: perl
+Path: generated_sdks\client_perl
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g perl -o generated_sdks\client_perl --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:52.331555] CLIENT: bash
+Path: generated_sdks\client_bash
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g bash -o generated_sdks\client_bash --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:52.737717] CLIENT: clojure
+Path: generated_sdks\client_clojure
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g clojure -o generated_sdks\client_clojure --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:53.485637] CLIENT: powershell
+Path: generated_sdks\client_powershell
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g powershell -o generated_sdks\client_powershell --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:58.638640] CLIENT: crystal
+Path: generated_sdks\client_crystal
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g crystal -o generated_sdks\client_crystal --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:59.412512] CLIENT: elixir
+Path: generated_sdks\client_elixir
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g elixir -o generated_sdks\client_elixir --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:01:59.928584] CLIENT: elm
+Path: generated_sdks\client_elm
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g elm -o generated_sdks\client_elm --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:05.270153] CLIENT: groovy
+Path: generated_sdks\client_groovy
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g groovy -o generated_sdks\client_groovy --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:06.074542] CLIENT: nim
+Path: generated_sdks\client_nim
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g nim -o generated_sdks\client_nim --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:06.970188] CLIENT: ocaml
+Path: generated_sdks\client_ocaml
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g ocaml -o generated_sdks\client_ocaml --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:12.493755] CLIENT: ada
+Path: generated_sdks\client_ada
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g ada -o generated_sdks\client_ada --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:12.971808] CLIENT: apex
+Path: generated_sdks\client_apex
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g apex -o generated_sdks\client_apex --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:14.741940] CLIENT: eiffel
+Path: generated_sdks\client_eiffel
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g eiffel -o generated_sdks\client_eiffel --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:19.152834] CLIENT: android
+Path: generated_sdks\client_android
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g android -o generated_sdks\client_android --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:19.510963] CLIENT: cpp-oatpp-client
+Path: generated_sdks\client_cpp-oatpp-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-oatpp-client -o generated_sdks\client_cpp-oatpp-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:21.297734] CLIENT: cpp-qt-client
+Path: generated_sdks\client_cpp-qt-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-qt-client -o generated_sdks\client_cpp-qt-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:26.334415] CLIENT: cpp-tiny
+Path: generated_sdks\client_cpp-tiny
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-tiny -o generated_sdks\client_cpp-tiny --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:26.701406] CLIENT: cpp-restsdk
+Path: generated_sdks\client_cpp-restsdk
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-restsdk -o generated_sdks\client_cpp-restsdk --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:30.023195] CLIENT: cpp-tizen
+Path: generated_sdks\client_cpp-tizen
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-tizen -o generated_sdks\client_cpp-tizen --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:35.496918] CLIENT: cpp-ue4
+Path: generated_sdks\client_cpp-ue4
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-ue4 -o generated_sdks\client_cpp-ue4 --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:36.414291] CLIENT: dart-dio
+Path: generated_sdks\client_dart-dio
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g dart-dio -o generated_sdks\client_dart-dio --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:38.184263] CLIENT: erlang-client
+Path: generated_sdks\client_erlang-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g erlang-client -o generated_sdks\client_erlang-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:43.840071] CLIENT: erlang-proper
+Path: generated_sdks\client_erlang-proper
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g erlang-proper -o generated_sdks\client_erlang-proper --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:48.008326] CLIENT: haskell-http-client
+Path: generated_sdks\client_haskell-http-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g haskell-http-client -o generated_sdks\client_haskell-http-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:48.854435] CLIENT: gdscript
+Path: generated_sdks\client_gdscript
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g gdscript -o generated_sdks\client_gdscript --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:56.644978] CLIENT: javascript-closure-angular
+Path: generated_sdks\client_javascript-closure-angular
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g javascript-closure-angular -o generated_sdks\client_javascript-closure-angular --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:56.998084] CLIENT: java-micronaut-client
+Path: generated_sdks\client_java-micronaut-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-micronaut-client -o generated_sdks\client_java-micronaut-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:02:57.200546] CLIENT: java-helidon-client
+Path: generated_sdks\client_java-helidon-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-helidon-client -o generated_sdks\client_java-helidon-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:03.145600] CLIENT: javascript-flowtyped
+Path: generated_sdks\client_javascript-flowtyped
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g javascript-flowtyped -o generated_sdks\client_javascript-flowtyped --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:03.751360] CLIENT: jetbrains-http-client
+Path: generated_sdks\client_jetbrains-http-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jetbrains-http-client -o generated_sdks\client_jetbrains-http-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:03.959273] CLIENT: jaxrs-cxf-client
+Path: generated_sdks\client_jaxrs-cxf-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jaxrs-cxf-client -o generated_sdks\client_jaxrs-cxf-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:09.989406] CLIENT: jmeter
+Path: generated_sdks\client_jmeter
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jmeter -o generated_sdks\client_jmeter --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:10.228587] CLIENT: k6
+Path: generated_sdks\client_k6
+Status: FAILED (rc=1)
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g k6 -o generated_sdks\client_k6 --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+Exception in thread "main" java.lang.NumberFormatException: For input string: "200 "
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.openapitools.codegen.languages.K6ClientCodegen.preprocessOpenAPI(K6ClientCodegen.java:547)
+	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:282)
+	at 
+
+======================================================================
+[2026-03-21T23:03:10.403724] CLIENT: julia-client
+Path: generated_sdks\client_julia-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g julia-client -o generated_sdks\client_julia-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:17.688240] CLIENT: n4js
+Path: generated_sdks\client_n4js
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g n4js -o generated_sdks\client_n4js --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:18.826542] CLIENT: objc
+Path: generated_sdks\client_objc
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g objc -o generated_sdks\client_objc --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:19.075263] CLIENT: php-dt
+Path: generated_sdks\client_php-dt
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php-dt -o generated_sdks\client_php-dt --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:28.529712] CLIENT: php-nextgen
+Path: generated_sdks\client_php-nextgen
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php-nextgen -o generated_sdks\client_php-nextgen --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:29.540076] CLIENT: python-pydantic-v1
+Path: generated_sdks\client_python-pydantic-v1
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g python-pydantic-v1 -o generated_sdks\client_python-pydantic-v1 --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:29.781273] CLIENT: scala-akka
+Path: generated_sdks\client_scala-akka
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-akka -o generated_sdks\client_scala-akka --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+[main] ERROR o.o.c.l.ScalaAkkaClientCodegen - Status code is not an integer : response.code
+java.lang.NumberFormatException: For input string: "200 "
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.openapitools.codegen.languages.ScalaAkkaClientCodegen.postProcessOperationsWithModels(ScalaAkkaClientCodegen.java:221)
+	at org.opena
+
+======================================================================
+[2026-03-21T23:03:38.475088] CLIENT: scala-gatling
+Path: generated_sdks\client_scala-gatling
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-gatling -o generated_sdks\client_scala-gatling --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:39.613310] CLIENT: scala-http4s
+Path: generated_sdks\client_scala-http4s
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-http4s -o generated_sdks\client_scala-http4s --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+[main] ERROR o.o.c.l.ScalaHttp4sClientCodegen - Status code is not an integer : response.code
+java.lang.NumberFormatException: For input string: "200 "
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.openapitools.codegen.languages.ScalaHttp4sClientCodegen.postProcessOperationsWithModels(ScalaHttp4sClientCodegen.java:338)
+	at org
+
+======================================================================
+[2026-03-21T23:03:39.808535] CLIENT: scala-pekko
+Path: generated_sdks\client_scala-pekko
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-pekko -o generated_sdks\client_scala-pekko --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+[main] ERROR o.o.c.l.ScalaPekkoClientCodegen - Status code is not an integer : response.code
+java.lang.NumberFormatException: For input string: "200 "
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.openapitools.codegen.languages.ScalaPekkoClientCodegen.postProcessOperationsWithModels(ScalaPekkoClientCodegen.java:221)
+	at org.op
+
+======================================================================
+[2026-03-21T23:03:49.099297] CLIENT: scala-sttp
+Path: generated_sdks\client_scala-sttp
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-sttp -o generated_sdks\client_scala-sttp --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+[main] ERROR o.o.c.l.ScalaSttpClientCodegen - Status code is not an integer : response.code
+java.lang.NumberFormatException: For input string: "200 "
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.openapitools.codegen.languages.ScalaSttpClientCodegen.postProcessOperationsWithModels(ScalaSttpClientCodegen.java:334)
+	at org.opena
+
+======================================================================
+[2026-03-21T23:03:50.260188] CLIENT: scala-sttp4
+Path: generated_sdks\client_scala-sttp4
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-sttp4 -o generated_sdks\client_scala-sttp4 --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+[main] ERROR o.o.c.l.ScalaSttp4ClientCodegen - Status code is not an integer : response.code
+java.lang.NumberFormatException: For input string: "200 "
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.openapitools.codegen.languages.ScalaSttp4ClientCodegen.postProcessOperationsWithModels(ScalaSttp4ClientCodegen.java:317)
+	at org.op
+
+======================================================================
+[2026-03-21T23:03:50.801988] CLIENT: scala-sttp4-jsoniter
+Path: generated_sdks\client_scala-sttp4-jsoniter
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-sttp4-jsoniter -o generated_sdks\client_scala-sttp4-jsoniter --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+[main] ERROR o.o.c.l.ScalaSttp4JsoniterClientCodegen - Status code is not an integer : response.code
+java.lang.NumberFormatException: For input string: "200 "
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.openapitools.codegen.languages.ScalaSttp4JsoniterClientCodegen.postProcessOperationsWithModels(ScalaSttp4JsoniterClientCode
+
+======================================================================
+[2026-03-21T23:03:57.313874] CLIENT: scalaz
+Path: generated_sdks\client_scalaz
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scalaz -o generated_sdks\client_scalaz --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:58.637156] CLIENT: swift-combine
+Path: generated_sdks\client_swift-combine
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g swift-combine -o generated_sdks\client_swift-combine --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:03:59.954213] CLIENT: swift6
+Path: generated_sdks\client_swift6
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g swift6 -o generated_sdks\client_swift6 --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:07.850126] CLIENT: terraform-provider
+Path: generated_sdks\client_terraform-provider
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g terraform-provider -o generated_sdks\client_terraform-provider --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:08.963496] CLIENT: typescript-angular
+Path: generated_sdks\client_typescript-angular
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-angular -o generated_sdks\client_typescript-angular --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:10.314166] CLIENT: typescript-aurelia
+Path: generated_sdks\client_typescript-aurelia
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-aurelia -o generated_sdks\client_typescript-aurelia --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:17.751914] CLIENT: typescript-axios
+Path: generated_sdks\client_typescript-axios
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-axios -o generated_sdks\client_typescript-axios --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:18.859933] CLIENT: typescript-fetch
+Path: generated_sdks\client_typescript-fetch
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-fetch -o generated_sdks\client_typescript-fetch --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:19.798346] CLIENT: typescript-inversify
+Path: generated_sdks\client_typescript-inversify
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-inversify -o generated_sdks\client_typescript-inversify --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:25.912968] CLIENT: typescript-jquery
+Path: generated_sdks\client_typescript-jquery
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-jquery -o generated_sdks\client_typescript-jquery --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:26.840060] CLIENT: typescript-nestjs
+Path: generated_sdks\client_typescript-nestjs
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-nestjs -o generated_sdks\client_typescript-nestjs --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:27.623884] CLIENT: typescript-node
+Path: generated_sdks\client_typescript-node
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-node -o generated_sdks\client_typescript-node --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:33.809119] CLIENT: typescript-redux-query
+Path: generated_sdks\client_typescript-redux-query
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-redux-query -o generated_sdks\client_typescript-redux-query --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:34.900963] CLIENT: typescript-rxjs
+Path: generated_sdks\client_typescript-rxjs
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-rxjs -o generated_sdks\client_typescript-rxjs --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:35.878639] CLIENT: xojo-client
+Path: generated_sdks\client_xojo-client
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g xojo-client -o generated_sdks\client_xojo-client --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:42.185290] CLIENT: zapier
+Path: generated_sdks\client_zapier
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g zapier -o generated_sdks\client_zapier --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:43.876813] SERVER: python-flask
+Path: generated_sdks\server_python-flask
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g python-flask -o generated_sdks\server_python-flask --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:44.640936] SERVER: python-fastapi
+Path: generated_sdks\server_python-fastapi
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g python-fastapi -o generated_sdks\server_python-fastapi --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:49.950760] SERVER: go-server
+Path: generated_sdks\server_go-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g go-server -o generated_sdks\server_go-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:52.007345] SERVER: php-symfony
+Path: generated_sdks\server_php-symfony
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php-symfony -o generated_sdks\server_php-symfony --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:52.662900] SERVER: ada-server
+Path: generated_sdks\server_ada-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g ada-server -o generated_sdks\server_ada-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:56.163111] SERVER: aspnet-fastendpoints
+Path: generated_sdks\server_aspnet-fastendpoints
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g aspnet-fastendpoints -o generated_sdks\server_aspnet-fastendpoints --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:04:59.466379] SERVER: aspnetcore
+Path: generated_sdks\server_aspnetcore
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g aspnetcore -o generated_sdks\server_aspnetcore --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:00.055166] SERVER: cpp-httplib-server
+Path: generated_sdks\server_cpp-httplib-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-httplib-server -o generated_sdks\server_cpp-httplib-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:03.677895] SERVER: cpp-oatpp-server
+Path: generated_sdks\server_cpp-oatpp-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-oatpp-server -o generated_sdks\server_cpp-oatpp-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:06.666688] SERVER: cpp-pistache-server
+Path: generated_sdks\server_cpp-pistache-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-pistache-server -o generated_sdks\server_cpp-pistache-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:07.494343] SERVER: cpp-qt-qhttpengine-server
+Path: generated_sdks\server_cpp-qt-qhttpengine-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-qt-qhttpengine-server -o generated_sdks\server_cpp-qt-qhttpengine-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:10.637435] SERVER: cpp-restbed-server
+Path: generated_sdks\server_cpp-restbed-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-restbed-server -o generated_sdks\server_cpp-restbed-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:13.828426] SERVER: cpp-restbed-server-deprecated
+Path: generated_sdks\server_cpp-restbed-server-deprecated
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g cpp-restbed-server-deprecated -o generated_sdks\server_cpp-restbed-server-deprecated --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:14.893974] SERVER: csharp-functions
+Path: generated_sdks\server_csharp-functions
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g csharp-functions -o generated_sdks\server_csharp-functions --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:17.963352] SERVER: erlang-server
+Path: generated_sdks\server_erlang-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g erlang-server -o generated_sdks\server_erlang-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:21.418045] SERVER: fsharp-functions
+Path: generated_sdks\server_fsharp-functions
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g fsharp-functions -o generated_sdks\server_fsharp-functions --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:24.213163] SERVER: fsharp-giraffe-server
+Path: generated_sdks\server_fsharp-giraffe-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g fsharp-giraffe-server -o generated_sdks\server_fsharp-giraffe-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:26.729184] SERVER: go-echo-server
+Path: generated_sdks\server_go-echo-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g go-echo-server -o generated_sdks\server_go-echo-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:30.513371] SERVER: go-gin-server
+Path: generated_sdks\server_go-gin-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g go-gin-server -o generated_sdks\server_go-gin-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:32.371012] SERVER: graphql-nodejs-express-server
+Path: generated_sdks\server_graphql-nodejs-express-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g graphql-nodejs-express-server -o generated_sdks\server_graphql-nodejs-express-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:34.218846] SERVER: haskell
+Path: generated_sdks\server_haskell
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g haskell -o generated_sdks\server_haskell --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:37.320667] SERVER: haskell-yesod
+Path: generated_sdks\server_haskell-yesod
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g haskell-yesod -o generated_sdks\server_haskell-yesod --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:41.269041] SERVER: java-camel
+Path: generated_sdks\server_java-camel
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-camel -o generated_sdks\server_java-camel --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:43.460909] SERVER: java-dubbo
+Path: generated_sdks\server_java-dubbo
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-dubbo -o generated_sdks\server_java-dubbo --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:49.456880] SERVER: java-helidon-server
+Path: generated_sdks\server_java-helidon-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-helidon-server -o generated_sdks\server_java-helidon-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:49.993933] SERVER: java-inflector
+Path: generated_sdks\server_java-inflector
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-inflector -o generated_sdks\server_java-inflector --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:52.184127] SERVER: java-micronaut-server
+Path: generated_sdks\server_java-micronaut-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-micronaut-server -o generated_sdks\server_java-micronaut-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:57.513143] SERVER: java-microprofile
+Path: generated_sdks\server_java-microprofile
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-microprofile -o generated_sdks\server_java-microprofile --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:05:57.751340] SERVER: java-msf4j
+Path: generated_sdks\server_java-msf4j
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-msf4j -o generated_sdks\server_java-msf4j --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:00.033305] SERVER: java-pkmst
+Path: generated_sdks\server_java-pkmst
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-pkmst -o generated_sdks\server_java-pkmst --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:05.150214] SERVER: java-undertow-server
+Path: generated_sdks\server_java-undertow-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-undertow-server -o generated_sdks\server_java-undertow-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:05.474291] SERVER: java-play-framework
+Path: generated_sdks\server_java-play-framework
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-play-framework -o generated_sdks\server_java-play-framework --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:07.116623] SERVER: java-vertx-web
+Path: generated_sdks\server_java-vertx-web
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-vertx-web -o generated_sdks\server_java-vertx-web --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:13.806162] SERVER: java-wiremock
+Path: generated_sdks\server_java-wiremock
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g java-wiremock -o generated_sdks\server_java-wiremock --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:14.141074] SERVER: jaxrs-cxf
+Path: generated_sdks\server_jaxrs-cxf
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jaxrs-cxf -o generated_sdks\server_jaxrs-cxf --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:17.320289] SERVER: jaxrs-cxf-cdi
+Path: generated_sdks\server_jaxrs-cxf-cdi
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jaxrs-cxf-cdi -o generated_sdks\server_jaxrs-cxf-cdi --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:21.484594] SERVER: jaxrs-cxf-extended
+Path: generated_sdks\server_jaxrs-cxf-extended
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jaxrs-cxf-extended -o generated_sdks\server_jaxrs-cxf-extended --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:22.843568] SERVER: jaxrs-jersey
+Path: generated_sdks\server_jaxrs-jersey
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jaxrs-jersey -o generated_sdks\server_jaxrs-jersey --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:26.453240] SERVER: jaxrs-resteasy
+Path: generated_sdks\server_jaxrs-resteasy
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jaxrs-resteasy -o generated_sdks\server_jaxrs-resteasy --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:31.938536] SERVER: jaxrs-resteasy-eap
+Path: generated_sdks\server_jaxrs-resteasy-eap
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jaxrs-resteasy-eap -o generated_sdks\server_jaxrs-resteasy-eap --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:32.882490] SERVER: jaxrs-spec
+Path: generated_sdks\server_jaxrs-spec
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g jaxrs-spec -o generated_sdks\server_jaxrs-spec --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:35.431049] SERVER: julia-server
+Path: generated_sdks\server_julia-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g julia-server -o generated_sdks\server_julia-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:40.267686] SERVER: kotlin-misk
+Path: generated_sdks\server_kotlin-misk
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g kotlin-misk -o generated_sdks\server_kotlin-misk --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:41.019748] SERVER: kotlin-server
+Path: generated_sdks\server_kotlin-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g kotlin-server -o generated_sdks\server_kotlin-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:43.752211] SERVER: kotlin-spring
+Path: generated_sdks\server_kotlin-spring
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g kotlin-spring -o generated_sdks\server_kotlin-spring --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:47.074309] SERVER: kotlin-vertx
+Path: generated_sdks\server_kotlin-vertx
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g kotlin-vertx -o generated_sdks\server_kotlin-vertx --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:48.221717] SERVER: kotlin-wiremock
+Path: generated_sdks\server_kotlin-wiremock
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g kotlin-wiremock -o generated_sdks\server_kotlin-wiremock --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:51.151363] SERVER: nodejs-express-server
+Path: generated_sdks\server_nodejs-express-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g nodejs-express-server -o generated_sdks\server_nodejs-express-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:54.654589] SERVER: php-flight
+Path: generated_sdks\server_php-flight
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php-flight -o generated_sdks\server_php-flight --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:55.970814] SERVER: php-laravel
+Path: generated_sdks\server_php-laravel
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php-laravel -o generated_sdks\server_php-laravel --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:06:58.614860] SERVER: php-lumen
+Path: generated_sdks\server_php-lumen
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php-lumen -o generated_sdks\server_php-lumen --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:02.263746] SERVER: php-mezzio-ph
+Path: generated_sdks\server_php-mezzio-ph
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php-mezzio-ph -o generated_sdks\server_php-mezzio-ph --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:03.035154] SERVER: php-slim4
+Path: generated_sdks\server_php-slim4
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g php-slim4 -o generated_sdks\server_php-slim4 --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:06.823806] SERVER: python-aiohttp
+Path: generated_sdks\server_python-aiohttp
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g python-aiohttp -o generated_sdks\server_python-aiohttp --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:10.227918] SERVER: python-blueplanet
+Path: generated_sdks\server_python-blueplanet
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g python-blueplanet -o generated_sdks\server_python-blueplanet --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:10.790856] SERVER: ruby-on-rails
+Path: generated_sdks\server_ruby-on-rails
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g ruby-on-rails -o generated_sdks\server_ruby-on-rails --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:14.495006] SERVER: ruby-sinatra
+Path: generated_sdks\server_ruby-sinatra
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g ruby-sinatra -o generated_sdks\server_ruby-sinatra --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:18.796702] SERVER: rust-axum
+Path: generated_sdks\server_rust-axum
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g rust-axum -o generated_sdks\server_rust-axum --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:19.020488] SERVER: rust-server
+Path: generated_sdks\server_rust-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g rust-server -o generated_sdks\server_rust-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:22.579825] SERVER: rust-server-deprecated
+Path: generated_sdks\server_rust-server-deprecated
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g rust-server-deprecated -o generated_sdks\server_rust-server-deprecated --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:25.694846] SERVER: scala-akka-http-server
+Path: generated_sdks\server_scala-akka-http-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-akka-http-server -o generated_sdks\server_scala-akka-http-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:26.499310] SERVER: scala-cask
+Path: generated_sdks\server_scala-cask
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-cask -o generated_sdks\server_scala-cask --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:29.311729] SERVER: scala-finch
+Path: generated_sdks\server_scala-finch
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-finch -o generated_sdks\server_scala-finch --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:32.086936] SERVER: scala-http4s-server
+Path: generated_sdks\server_scala-http4s-server
+Status: FAILED (rc=1)
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-http4s-server -o generated_sdks\server_scala-http4s-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+STDERR:
+Exception in thread "main" java.lang.RuntimeException: Could not generate api file for 'MarketWebsocket'
+	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:821)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:1295)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:535)
+	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
+	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGener
+
+======================================================================
+[2026-03-21T23:07:33.627871] SERVER: scala-play-server
+Path: generated_sdks\server_scala-play-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scala-play-server -o generated_sdks\server_scala-play-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:35.996422] SERVER: scalatra
+Path: generated_sdks\server_scalatra
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g scalatra -o generated_sdks\server_scalatra --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:40.050609] SERVER: spring
+Path: generated_sdks\server_spring
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g spring -o generated_sdks\server_spring --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis
+
+======================================================================
+[2026-03-21T23:07:40.634548] SERVER: typescript-nestjs-server
+Path: generated_sdks\server_typescript-nestjs-server
+Status: SUCCESS
+Cmd: java -jar openapi-generator-cli.jar generate -i lcx_openapi.json -g typescript-nestjs-server -o generated_sdks\server_typescript-nestjs-server --skip-validate-spec
+
+STDOUT:
+[main] WARN  o.o.c.config.CodegenConfigurator - There were issues with the specification, but validation has been explicitly disabled.
+Errors: 
+	-attribute components.requestBodies.PublicWS.Ticker is unexpected
+	-paths.'/api/balances'(get).responses.200.content.'application/json'.schema.$ref target #/components/responseBodies/FetchBalances is not of expected type Schema
+	-attribute paths.'/api/orderHistory'(get).responses.200.content.'application/json'.schema.#/components/responseBodies/OrderHis

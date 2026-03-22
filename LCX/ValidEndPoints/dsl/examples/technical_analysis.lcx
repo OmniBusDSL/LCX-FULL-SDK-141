@@ -1,0 +1,26 @@
+# Technical Analysis - Market analysis workflow
+
+FetchMarketTickers:
+  endpoint: GET /api/tickers
+  auth: none
+  output: print
+
+FetchTradingPairs:
+  endpoint: GET /api/pairs
+  auth: none
+  output: json
+
+TechnicalAnalysisWorkflow:
+  sequence:
+    1. GetTickers:
+         endpoint: GET /api/tickers
+         auth: none
+         output: save ticker_data
+
+    2. GetPairs:
+         endpoint: GET /api/pairs
+         auth: none
+         output: save pair_data
+
+    3. print "Technical analysis initialized"
+       print "Ticker and pair data loaded"

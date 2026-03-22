@@ -1,0 +1,74 @@
+import okhttp3.*
+import com.google.gson.*
+import kotlinx.coroutines.*
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+import java.util.*
+
+
+# POST method not supported for kotlin
+suspend fun check_order_status(order_id): Map<String, Any> {
+    // GET /api/trading/order/{order_id}
+    val url = "https://exchange-api.lcx.com/api/trading/order/{order_id}"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/trading/order/{order_id}"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+        Gson().fromJson(body, Map::class.java) as Map<String, Any>
+
+    }
+}
+
+# POST method not supported for kotlin
+suspend fun complete_order_flow(currency): Map<String, Any> {
+    // GET /api/account/balance
+    val url = "https://exchange-api.lcx.com/api/account/balance"
+    val client = OkHttpClient()
+    val apiKey = System.getenv("LCX_API_KEY")
+    val apiSecret = System.getenv("LCX_API_SECRET")
+    val timestamp = System.currentTimeMillis().toString()
+    val message = "$timestamp/GET//api/account/balance"
+    val mac = Mac.getInstance("HmacSHA256")
+    mac.init(SecretKeySpec(apiSecret.toByteArray(), "HmacSHA256"))
+    val signature = Base64.getEncoder().encodeToString(mac.doFinal(message.toByteArray()))
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Content-Type", "application/json")
+        .get()
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        val response = client.newCall(request).execute()
+        val body = response.body?.string() ?: "{}"
+
+    }
+}
+
+
+
+# POST method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin
+# None method not supported for kotlin

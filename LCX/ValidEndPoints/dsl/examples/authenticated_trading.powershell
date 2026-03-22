@@ -1,0 +1,247 @@
+# PowerShell API Client
+
+
+function get_account_info() {
+    # GET /api/account
+    $url = "https://exchange-api.lcx.com/api/account"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+function get_balances() {
+    # GET /api/balances
+    $url = "https://exchange-api.lcx.com/api/balances"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+function get_asset_balance(asset) {
+    # GET /api/balance
+    $url = "https://exchange-api.lcx.com/api/balance"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+function get_trading_fees() {
+    # GET /api/fees
+    $url = "https://exchange-api.lcx.com/api/fees"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+function get_open_orders(offset, pair) {
+    # GET /api/open
+    $url = "https://exchange-api.lcx.com/api/open"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+function get_order_details(orderId) {
+    # GET /api/order
+    $url = "https://exchange-api.lcx.com/api/order"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+function get_order_history(offset, pair, fromDate, toDate, side, orderStatus, orderType) {
+    # GET /api/orderHistory
+    $url = "https://exchange-api.lcx.com/api/orderHistory"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+function get_user_trade_history(offset, pair, fromDate, toDate) {
+    # GET /api/uHistory
+    $url = "https://exchange-api.lcx.com/api/uHistory"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+# POST method not supported for powershell
+# PUT method not supported for powershell
+# DELETE method not supported for powershell
+# DELETE method not supported for powershell
+function check_balance_workflow() {
+    # GET /api/balances
+    $url = "https://exchange-api.lcx.com/api/balances"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+# Workflow: CheckBalanceWorkflow (sequence)
+
+# None method not supported for powershell
+function place_order_workflow(BTC/USDC) {
+    # GET /api/ticker
+    $url = "https://exchange-api.lcx.com/api/ticker"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+# Workflow: PlaceOrderWorkflow (sequence)
+
+# POST method not supported for powershell
+function get_order_info(order_response) {
+    # GET /api/order
+    $url = "https://exchange-api.lcx.com/api/order"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+# None method not supported for powershell
+function manage_open_orders_workflow(0) {
+    # GET /api/orderHistory
+    $url = "https://exchange-api.lcx.com/api/orderHistory"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+# Workflow: ManageOpenOrdersWorkflow (sequence)
+
+function get_trade_history(0) {
+    # GET /api/uHistory
+    $url = "https://exchange-api.lcx.com/api/uHistory"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+# None method not supported for powershell
+# PUT method not supported for powershell
+# DELETE method not supported for powershell
+# None method not supported for powershell
+function account_monitoring_workflow() {
+    # GET /api/balances
+    $url = "https://exchange-api.lcx.com/api/balances"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+# Workflow: AccountMonitoringWorkflow (sequence)
+
+function get_open_orders(0) {
+    # GET /api/open
+    $url = "https://exchange-api.lcx.com/api/open"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+function get_fees() {
+    # GET /api/fees
+    $url = "https://exchange-api.lcx.com/api/fees"
+    $headers = @{"Content-Type" = "application/json"}
+
+    try {
+        $response = Invoke-WebRequest -Uri $url -Method Get -Headers $headers
+        Write-Host $response.Content
+        return $response.Content | ConvertFrom-Json
+    } catch {
+        Write-Error "Request failed: $_"
+    }
+}
+
+# None method not supported for powershell

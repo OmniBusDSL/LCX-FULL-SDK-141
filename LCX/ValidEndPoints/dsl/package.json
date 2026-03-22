@@ -1,0 +1,16 @@
+{
+  "name": "lcx-dsl-compiler",
+  "version": "1.0.0",
+  "description": "LCX DSL Compiler Web Dashboard",
+  "main": "web/app.js",
+  "scripts": {
+    "start": "node web/app.js",
+    "dev": "node web/app.js"
+  },
+  "keywords": ["lcx", "dsl", "compiler"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

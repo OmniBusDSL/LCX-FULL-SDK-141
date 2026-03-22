@@ -1,0 +1,22 @@
+; x86-64 Assembly
+
+section .text
+  global fetch_all_pairs_data
+fetch_all_pairs_data:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+# Workflow: FetchAllPairsData (sequence)
+
+section .text
+  global get_ethusdc_ticker
+get_ethusdc_ticker:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_lcxusdc_ticker
+get_lcxusdc_ticker:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret

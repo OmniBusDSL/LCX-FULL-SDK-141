@@ -1,0 +1,16 @@
+defmodule APIClient do
+  require HTTPoison
+  require Jason
+end
+
+
+# WS method not supported for elixir
+# WS method not supported for elixir
+# WS method not supported for elixir
+# WS method not supported for elixir
+# WS method not supported for elixir
+# None method not supported for elixir
+# WS method not supported for elixir
+# WS method not supported for elixir
+# WS method not supported for elixir
+# None method not supported for elixir

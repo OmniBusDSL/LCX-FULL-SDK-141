@@ -1,0 +1,59 @@
+; x86-64 Assembly
+
+section .text
+  global fetch_all_tickers
+fetch_all_tickers:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_ticker_for_pair
+get_ticker_for_pair:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global fetch_all_pairs
+fetch_all_pairs:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_pair_info
+get_pair_info:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_order_book
+get_order_book:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_recent_trades
+get_recent_trades:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global get_candle_data
+get_candle_data:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+section .text
+  global market_overview
+market_overview:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+# Workflow: MarketOverview (sequence)
+
+section .text
+  global get_trades
+get_trades:
+  ; x86-64 assembly for HTTP GET
+  mov rax, 0  ; syscall: write
+  ret
+# None method not supported for assembly

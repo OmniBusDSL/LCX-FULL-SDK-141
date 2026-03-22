@@ -1,0 +1,50 @@
+import Network.HTTP
+
+fetch_all_tickers :: String -> IO String
+fetch_all_tickers params = do
+  let url = "https://exchange-api.lcx.com/api/tickers"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_ticker_for_pair :: String -> IO String
+get_ticker_for_pair params = do
+  let url = "https://exchange-api.lcx.com/api/ticker"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+fetch_all_pairs :: String -> IO String
+fetch_all_pairs params = do
+  let url = "https://exchange-api.lcx.com/api/pairs"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_pair_info :: String -> IO String
+get_pair_info params = do
+  let url = "https://exchange-api.lcx.com/api/pair/BTC/USDC"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_order_book :: String -> IO String
+get_order_book params = do
+  let url = "https://exchange-api.lcx.com/api/book"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_recent_trades :: String -> IO String
+get_recent_trades params = do
+  let url = "https://exchange-api.lcx.com/api/trades"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+get_candle_data :: String -> IO String
+get_candle_data params = do
+  let url = "https://api-kline.lcx.com/v1/market/kline"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+market_overview :: String -> IO String
+market_overview params = do
+  let url = "https://exchange-api.lcx.com/api/book"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+# Workflow: MarketOverview (sequence)
+
+get_trades :: String -> IO String
+get_trades params = do
+  let url = "https://exchange-api.lcx.com/api/trades"
+  response <- simpleHTTP (getRequest url)
+  return $ rspBody response
+# None method not supported for haskell
