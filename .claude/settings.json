@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(sleep 5 echo \"=== SERVERS STATUS ===\" echo \"\" echo \"Flask Backend \\(5000\\):\" curl -s http://localhost:5000/health)"
+      "Bash(sleep 5 echo \"=== SERVERS STATUS ===\" echo \"\" echo \"Flask Backend \\(5000\\):\" curl -s http://localhost:5000/health)",
+      "Bash(rm -f FINAL_COMPLETION_REPORT.md FINAL_API_STATUS_REPORT.md)",
+      "Bash(ls -la *.md)",
+      "Bash(rm -f API_CORRECTIONS.md ENDPOINT_FIXES.md FINAL_REPORT.md PROBLEM_ENDPOINTS.md QUICK_TEST_GUIDE.md README-LCX.md TEST_RESULTS.md VERIFIED_SUCCESS_RATE.md)",
+      "Bash(ls -1 *.md)",
+      "Bash(pkill -f \"node web/app.js\")",
+      "Bash(for route:*)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\cazan\\.claude\\projects\\c--Kits-work-limaje-de-programare\\memory"
     ]
   }
 }

@@ -379,14 +379,14 @@
             { method: 'DELETE', path: '/order/cancel-all', category: 'Trading API', description: 'Cancel all orders (Issue: not found)', auth: true },
 
             // 🌐 MARKET WEBSOCKET ENDPOINTS (3) - Public
-            { method: 'WS', path: '/subscribeTicker', category: 'Market WebSocket', description: 'Subscribe to ticker updates', auth: false, websocket: true },
-            { method: 'WS', path: '/subscribeOrderbook', category: 'Market WebSocket', description: 'Subscribe to orderbook updates', auth: false, websocket: true },
-            { method: 'WS', path: '/subscribeTrade', category: 'Market WebSocket', description: 'Subscribe to trade updates', auth: false, websocket: true },
+            { method: 'WS', path: '/ws', category: 'Market WebSocket', description: 'Subscribe to ticker updates (Type: ticker)', auth: false, websocket: true, wsType: 'ticker' },
+            { method: 'WS', path: '/ws', category: 'Market WebSocket', description: 'Subscribe to orderbook updates (Type: orderbook)', auth: false, websocket: true, wsType: 'orderbook' },
+            { method: 'WS', path: '/ws', category: 'Market WebSocket', description: 'Subscribe to trade updates (Type: trade)', auth: false, websocket: true, wsType: 'trade' },
 
             // 🔐 TRADING WEBSOCKET ENDPOINTS (3) - Private/Authenticated
-            { method: 'WS', path: '/api/auth/ws', category: 'Trading WebSocket', description: 'Subscribe to wallet & order updates', auth: true, websocket: true },
-            { method: 'WS', path: '/api/auth/ws', category: 'Trading WebSocket', description: 'Subscribe to order updates', auth: true, websocket: true },
-            { method: 'WS', path: '/api/auth/ws', category: 'Trading WebSocket', description: 'Subscribe to trade updates', auth: true, websocket: true },
+            { method: 'WS', path: '/api/auth/ws', category: 'Trading WebSocket', description: 'Subscribe to wallet & order updates (Type: user_wallets)', auth: true, websocket: true, wsType: 'user_wallets' },
+            { method: 'WS', path: '/api/auth/ws', category: 'Trading WebSocket', description: 'Subscribe to order updates (Type: user_orders)', auth: true, websocket: true, wsType: 'user_orders' },
+            { method: 'WS', path: '/api/auth/ws', category: 'Trading WebSocket', description: 'Subscribe to trade updates (Type: user_trades)', auth: true, websocket: true, wsType: 'user_trades' },
         ];
 
         let testResults = {};
@@ -534,36 +534,102 @@
             const wsEndpoints = ALL_ENDPOINTS.filter(ep => ep.websocket);
             document.getElementById('test-status').textContent = `Testing ${wsEndpoints.length} WebSocket endpoints...`;
 
+            const apiKey = localStorage.getItem('test_api_key');
+            const apiSecret = localStorage.getItem('test_api_secret');
             let connected = 0;
+            let tested = 0;
+
             for (let i = 0; i < wsEndpoints.length; i++) {
                 const ep = wsEndpoints[i];
-                try {
-                    // WebSocket URLs use wss:// protocol
-                    const wsUrl = (ep.path === '/api/auth/ws' ? 'wss://exchange-api.lcx.com' : 'wss://exchange-api.lcx.com') + ep.path;
-                    console.log(`[WS] Attempting connection to ${wsUrl}`);
+                const epIdx = ALL_ENDPOINTS.indexOf(ep);
+                tested++;
 
-                    // Try to establish connection with 2s timeout
+                try {
+                    let wsUrl = 'wss://exchange-api.lcx.com' + ep.path;
+
+                    // For authenticated endpoints, add API key to query params
+                    if (ep.auth && apiKey) {
+                        const timestamp = Math.floor(Date.now() / 1000);
+                        wsUrl += `?api_key=${apiKey}&timestamp=${timestamp}`;
+                        console.log(`[WS ${tested}] Authenticated: ${ep.wsType}`);
+                    }
+
+                    console.log(`[WS ${tested}/${wsEndpoints.length}] Connecting to ${ep.path} (${ep.wsType})`);
+                    console.log(`[WS ${tested}] URL: ${wsUrl}`);
+
+                    // Try to establish connection with 3s timeout
                     const ws = new WebSocket(wsUrl);
-                    let timeout = setTimeout(() => ws.close(), 2000);
+                    let timeout = setTimeout(() => { ws.close(); }, 3000);
+                    let received = false;
 
                     ws.onopen = () => {
-                        clearTimeout(timeout);
-                        connected++;
-                        console.log(`[WS] ✅ Connected to ${ep.path}`);
+                        console.log(`[WS ${tested}] ✅ Connected to ${ep.path}`);
+                        // Send subscription message
+                        const subMsg = {
+                            Topic: ep.wsType === 'ticker' || ep.wsType === 'orderbook' || ep.wsType === 'trade' ? 'LCX/USDC' : undefined,
+                            Type: ep.wsType
+                        };
+                        const msgStr = JSON.stringify(subMsg);
+                        console.log(`[WS ${tested}] Sending subscription: ${msgStr}`);
+                        ws.send(msgStr);
+                    };
+
+                    ws.onmessage = (event) => {
+                        if (!received) {
+                            received = true;
+                            connected++;
+                            clearTimeout(timeout);
+                            console.log(`[WS ${tested}] ✅ Received data for ${ep.wsType}`);
+                            testResults[epIdx] = {
+                                status: 'ok',
+                                time: 0,
+                                sample: `WS ${ep.wsType} connected`
+                            };
+                            ws.close();
+                        }
                     };
 
                     ws.onerror = () => {
                         clearTimeout(timeout);
-                        console.log(`[WS] ❌ Error connecting to ${ep.path}`);
+                        console.log(`[WS ${tested}] ❌ Error on ${ep.path} (${ep.wsType})`);
+                        if (!received) {
+                            testResults[epIdx] = {
+                                status: 'fail',
+                                time: 0,
+                                error: 'WebSocket connection failed'
+                            };
+                        }
                     };
+
+                    ws.onclose = () => {
+                        clearTimeout(timeout);
+                        if (!received) {
+                            testResults[epIdx] = {
+                                status: 'fail',
+                                time: 0,
+                                error: 'Connection closed'
+                            };
+                        }
+                    };
+
+                    // Wait between attempts
+                    await new Promise(r => setTimeout(r, 1000));
                 } catch(e) {
-                    console.log(`[WS] ❌ Failed to test ${ep.path}: ${e.message}`);
+                    console.log(`[WS ${tested}] ❌ Failed to test ${ep.path}: ${e.message}`);
+                    testResults[epIdx] = {
+                        status: 'fail',
+                        time: 0,
+                        error: e.message
+                    };
                 }
             }
 
+            updateStats();
+            renderEndpoints();
+
             btn.disabled = false;
             btn.textContent = '🌐 Test WebSocket (6)';
-            document.getElementById('test-status').textContent = `WebSocket testing started - Check console for real-time status (${connected}/${wsEndpoints.length} connected)`;
+            document.getElementById('test-status').textContent = `WebSocket testing complete! (${connected}/${wsEndpoints.length} connected)`;
         }
 
         async function testEndpoint(idx, endpoint, retryCount = 0) {
@@ -572,6 +638,17 @@
 
             try {
                 console.log(`[${retryCount + 1}] Testing: ${endpoint.method} ${endpoint.path}`);
+
+                // Fetch current price for dynamic test parameters
+                let currentPrice = 0.05;
+                try {
+                    const priceResp = await fetch('/api/current-price');
+                    const priceData = await priceResp.json();
+                    currentPrice = priceData.price || 0.05;
+                    console.log(`Current LCX/USDC price: ${currentPrice}`);
+                } catch (e) {
+                    console.log(`Could not fetch current price, using fallback: ${currentPrice}`);
+                }
 
                 // Get API keys from localStorage if available
                 const apiKey = localStorage.getItem('test_api_key');
@@ -584,7 +661,8 @@
 
                 const testRequest = {
                     endpoint,
-                    auth: null
+                    auth: null,
+                    currentPrice
                 };
 
                 // Add auth if endpoint requires it and we have keys

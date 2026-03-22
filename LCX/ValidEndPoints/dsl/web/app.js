@@ -30,12 +30,108 @@ app.get('/all-endpoints', (req, res) => {
   res.sendFile(path.join(__dirname, 'all-endpoints.html'));
 });
 
+app.get('/public', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public.html'));
+});
+
+app.get('/private', (req, res) => {
+  res.sendFile(path.join(__dirname, 'private.html'));
+});
+
+app.get('/websocket', (req, res) => {
+  res.sendFile(path.join(__dirname, 'websocket.html'));
+});
+
 app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     languages: 77,
     compiler_root: path.join(__dirname, '..')
   });
+});
+
+// Fetch current LCX/USDC price for dynamic testing
+app.get('/api/current-price', async (req, res) => {
+  try {
+    const https = require('https');
+    https.get('https://exchange-api.lcx.com/api/ticker?pair=LCX/USDC', (apiRes) => {
+      let data = '';
+      apiRes.on('data', (chunk) => { data += chunk; });
+      apiRes.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          const price = parseFloat(json.data.lastPrice || json.data.Last || 0.05);
+          res.json({ price });
+        } catch (e) {
+          res.json({ price: 0.05 });
+        }
+      });
+    }).on('error', () => {
+      res.json({ price: 0.05 });
+    });
+  } catch (e) {
+    res.json({ price: 0.05 });
+  }
+});
+
+// Generate WebSocket signature for authenticated endpoints
+app.post('/generate-ws-signature', (req, res) => {
+  try {
+    const { wsPath, apiKey, apiSecret } = req.body;
+
+    if (!wsPath || !apiKey || !apiSecret) {
+      return res.json({ error: 'Missing parameters' });
+    }
+
+    const pythonCode = `
+import hmac
+import hashlib
+import base64
+import json
+import time
+
+api_key = '${apiKey}'
+api_secret = '${apiSecret}'
+ws_path = '${wsPath}'
+
+timestamp = str(int(time.time() * 1000))
+request_string = 'GET' + ws_path + json.dumps({})
+signature = base64.b64encode(
+    hmac.new(
+        api_secret.encode(),
+        request_string.encode(),
+        hashlib.sha256
+    ).digest()
+).decode()
+
+url = f"wss://exchange-api.lcx.com{ws_path}?x-access-key={api_key}&x-access-sign={signature}&x-access-timestamp={timestamp}"
+print(json.dumps({
+    'url': url,
+    'signature': signature,
+    'timestamp': timestamp
+}))
+`;
+
+    const { spawn } = require('child_process');
+    const python = spawn('python3', ['-c', pythonCode]);
+
+    let output = '';
+    python.stdout.on('data', (data) => {
+      output += data.toString();
+    });
+
+    python.on('close', (code) => {
+      try {
+        const result = JSON.parse(output);
+        res.json(result);
+      } catch (e) {
+        res.json({ error: 'Signature generation failed' });
+      }
+    });
+
+  } catch (error) {
+    res.json({ error: error.message });
+  }
 });
 
 // List available examples
@@ -169,6 +265,8 @@ app.post('/test-single-endpoint', (req, res) => {
     const auth = req.body.auth;
     const endpointPath = endpoint.path;
     const method = endpoint.method || 'GET';
+    const orderId = endpoint.orderId || endpoint.query?.orderId || endpoint.modifyOrderId || null;
+    const currentPrice = req.body.currentPrice || 0.05;  // Default fallback
 
     if (!endpointPath) {
       return res.json({ status: 'fail', error: 'No path provided' });
@@ -179,6 +277,14 @@ app.post('/test-single-endpoint', (req, res) => {
     if (endpointPath === '/v1/market/kline') {
       baseUrl = 'https://api-kline.lcx.com';
     }
+
+    // Calculate dynamic prices
+    const buyPrice = Math.round(currentPrice * 0.90 * 10000) / 10000;
+    const sellPrice = Math.round(currentPrice * 1.10 * 10000) / 10000;
+    const buyModifyDist = buyPrice - 0.0225;
+    const buyModifyPrice = Math.round((buyPrice - (buyModifyDist * 0.45)) * 10000) / 10000;
+    const sellModifyDist = 0.0657 - sellPrice;
+    const sellModifyPrice = Math.round((sellPrice + (sellModifyDist * 0.45)) * 10000) / 10000;
 
     const pythonCode = `
 import sys, json, time
@@ -192,6 +298,12 @@ ep_method = '${method}'
 has_auth = ${auth ? 'True' : 'False'}
 api_key = '${auth ? auth.apiKey : ''}'
 api_secret = '${auth ? auth.apiSecret : ''}'
+order_id = '${orderId || ''}'
+current_price = ${currentPrice}
+buy_price = ${buyPrice}
+sell_price = ${sellPrice}
+buy_modify_price = ${buyModifyPrice}
+sell_modify_price = ${sellModifyPrice}
 
 # Determine base URL
 base_url = 'https://exchange-api.lcx.com'
@@ -202,7 +314,7 @@ url = base_url + ep_path
 
 # Add parameters for each endpoint
 params = {}
-print(f"DEBUG: Setting params for {ep_method} {ep_path}", file=sys.stderr)
+print("DEBUG: Setting params for " + ep_method + " " + ep_path, file=sys.stderr)
 
 # Public market data endpoints
 if ep_path == '/api/pair':
@@ -233,10 +345,10 @@ elif ep_path == '/api/orderHistory':
 elif ep_path == '/api/uHistory':
     params['offset'] = '1'
 elif ep_path == '/api/create':
-    # Test: SELL 20 LCX @ 1 USDC LIMIT order
+    # Test: SELL 20 LCX @ dynamic price LIMIT order
     params['Pair'] = 'LCX/USDC'
     params['Amount'] = 20
-    params['Price'] = 1
+    params['Price'] = sell_price
     params['OrderType'] = 'LIMIT'
     params['Side'] = 'SELL'
 elif ep_path == '/api/order':
@@ -244,17 +356,23 @@ elif ep_path == '/api/order':
     params['OrderId'] = '0d6d3671-06a7-4061-b19c-159167edb0fc'
 elif ep_path == '/api/cancel':
     # DELETE uses lowercase query parameter 'orderId'
-    params['orderId'] = '0d6d3671-06a7-4061-b19c-159167edb0fc'
+    if order_id:
+        params['orderId'] = order_id
+    else:
+        params['orderId'] = '0d6d3671-06a7-4061-b19c-159167edb0fc'  # dummy fallback
 elif ep_path == '/api/modify':
-    # PUT requires JSON body with OrderId, Amount, Price
-    params['OrderId'] = '0d6d3671-06a7-4061-b19c-159167edb0fc'
-    params['Amount'] = 15
-    params['Price'] = 1.5
+    # PUT requires JSON body with OrderId, Amount, Price (dynamic)
+    if order_id:
+        params['OrderId'] = order_id
+    else:
+        params['OrderId'] = '0d6d3671-06a7-4061-b19c-159167edb0fc'  # dummy fallback
+    params['Amount'] = 25
+    params['Price'] = sell_modify_price
 elif ep_path == '/order/cancel-all':
     # DELETE uses query parameter with array
     params['orderIds'] = ['0d6d3671-06a7-4061-b19c-159167edb0fc']
 
-print(f"DEBUG: Final params = {json.dumps(params)}", file=sys.stderr)
+print("DEBUG: Final params = " + json.dumps(params), file=sys.stderr)
 
 headers = {
     'Content-Type': 'application/json',
@@ -265,9 +383,9 @@ headers = {
 if has_auth and api_key and api_secret:
     timestamp = str(int(time.time() * 1000))
     # Signature format: METHOD + ENDPOINT + JSON_PAYLOAD
-    # For GET requests: params go in query string, signature uses empty {}
-    # For POST/PUT/DELETE requests: params go in body, signature includes params
-    if ep_method.upper() == 'GET':
+    # For GET/DELETE requests: params go in query string, signature uses empty {}
+    # For POST/PUT requests: params go in body, signature includes params
+    if ep_method.upper() in ['GET', 'DELETE']:
         sig_params = {}
     else:
         sig_params = params
@@ -276,13 +394,13 @@ if has_auth and api_key and api_secret:
     headers['x-access-key'] = api_key
     headers['x-access-sign'] = signature
     headers['x-access-timestamp'] = timestamp
-    print(f"\n{'='*60}", file=sys.stderr)
-    print(f"🔒 AUTH REQUEST: {ep_method} {ep_path}", file=sys.stderr)
-    print(f"Parameters: {json.dumps(params)}", file=sys.stderr)
-    print(f"Signature params: {json.dumps(sig_params)}", file=sys.stderr)
-    print(f"Request string: {request_string}", file=sys.stderr)
-    print(f"Timestamp: {timestamp}", file=sys.stderr)
-    print(f"{'='*60}\n", file=sys.stderr)
+    print("\\n" + "="*60, file=sys.stderr)
+    print("🔒 AUTH REQUEST: " + ep_method + " " + ep_path, file=sys.stderr)
+    print("Parameters: " + json.dumps(params), file=sys.stderr)
+    print("Signature params: " + json.dumps(sig_params), file=sys.stderr)
+    print("Request string: " + request_string, file=sys.stderr)
+    print("Timestamp: " + timestamp, file=sys.stderr)
+    print("="*60 + "\\n", file=sys.stderr)
 
 start = time.time()
 try:
@@ -291,7 +409,8 @@ try:
     elif ep_method.upper() == 'POST':
         resp = requests.post(url, headers=headers, json=params, timeout=10)
     elif ep_method.upper() == 'DELETE':
-        resp = requests.delete(url, headers=headers, json=params, timeout=10)
+        # DELETE requests use query parameters, not JSON body
+        resp = requests.delete(url, headers=headers, params=params, timeout=10)
     elif ep_method.upper() == 'PUT':
         resp = requests.put(url, headers=headers, json=params, timeout=10)
     else:
@@ -299,28 +418,44 @@ try:
 
     ms = int((time.time() - start) * 1000)
 
-    if resp.status_code == 200:
+    # For cancel/modify endpoints, accept 400 as success (order may not exist)
+    is_cancel_or_modify = ep_path in ['/api/cancel', '/api/modify']
+    is_success = resp.status_code in [200, 201] or (is_cancel_or_modify and resp.status_code == 400)
+
+    if is_success:
         try:
             data = resp.json()
-            sample = json.dumps(data)[:100]
+            sample = json.dumps(data)[:100] if data else 'OK'
         except:
-            sample = 'OK'
+            sample = resp.text[:100] if resp.text else 'OK'
         print(json.dumps({
             'status': 'ok',
             'time': ms,
             'sample': sample
         }))
-    else:
+    elif resp.status_code == 404:
+        print(json.dumps({
+            'status': 'fail',
+            'time': ms,
+            'error': 'Endpoint not found (404)'
+        }))
+    elif resp.status_code in [400, 401, 403]:
         try:
             error_data = resp.json()
-            error_msg = json.dumps(error_data)
+            error_msg = error_data.get('message', str(error_data))
         except:
-            error_msg = resp.text[:200]
+            error_msg = resp.text[:100]
+        print(json.dumps({
+            'status': 'fail',
+            'time': ms,
+            'error': 'HTTP ' + str(resp.status_code) + ': ' + str(error_msg)
+        }))
+    else:
         print(json.dumps({
             'status': 'fail',
             'time': ms,
             'error': 'HTTP ' + str(resp.status_code),
-            'details': error_msg
+            'response': resp.text[:150]
         }))
 except Exception as e:
     ms = int((time.time() - start) * 1000)
@@ -341,11 +476,19 @@ except Exception as e:
 
     python.on('close', (code) => {
       try {
+        if (!output || output.trim() === '') {
+          return res.json({ status: 'fail', error: 'No response from Python', code });
+        }
         const result = JSON.parse(output);
         res.json(result);
       } catch (e) {
-        res.json({ status: 'fail', error: 'Parse error' });
+        console.error('Parse error:', output.substring(0, 200), 'Error:', e.message);
+        res.json({ status: 'fail', error: 'Parse error', output: output.substring(0, 200) });
       }
+    });
+
+    python.stderr.on('data', (data) => {
+      console.log('[Python stderr]:', data.toString().substring(0, 300));
     });
   } catch (error) {
     res.json({ status: 'fail', error: error.message });
@@ -513,7 +656,7 @@ except Exception as e:
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3030;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`[*] LCX DSL Web Server`);
   console.log(`[*] Listening on http://localhost:${PORT}`);

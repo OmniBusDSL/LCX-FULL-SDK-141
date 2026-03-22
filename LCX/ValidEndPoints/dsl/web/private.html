@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 Private REST API - Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: #252526;
+            border: 1px solid #3c3c3c;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .header h1 { color: #f48771; margin-bottom: 10px; }
+        .header p { color: #888; font-size: 13px; }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: #a31515;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+        }
+        .btn:hover { background: #7a0f0f; }
+        .btn:disabled { background: #555; cursor: not-allowed; }
+        .btn-secondary { background: #007acc; }
+        .btn-secondary:hover { background: #005a9e; }
+        .auth-box {
+            background: #252526;
+            border: 1px solid #3c3c3c;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .auth-box input {
+            background: #1e1e1e;
+            border: 1px solid #3c3c3c;
+            color: #d4d4d4;
+            padding: 8px;
+            border-radius: 3px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-family: inherit;
+            font-size: 12px;
+        }
+        .auth-box label {
+            color: #888;
+            font-size: 12px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: #252526;
+            border: 1px solid #3c3c3c;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .stat-label { color: #888; font-size: 12px; margin-bottom: 5px; }
+        .stat-value { font-size: 24px; font-weight: bold; }
+        .stat-value.ok { color: #4ec9b0; }
+        .stat-value.fail { color: #f48771; }
+        .stat-value.pending { color: #888; }
+        .endpoints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .endpoint-card {
+            background: #252526;
+            border: 1px solid #3c3c3c;
+            border-radius: 4px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        .endpoint-card.ok { border-color: #4ec9b0; background: #1e3a35; }
+        .endpoint-card.fail { border-color: #f48771; background: #3a1e1e; }
+        .endpoint-card.pending { border-color: #666; background: #2a2a2d; }
+        .endpoint-method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .method-get { background: #0066cc; }
+        .method-post { background: #006600; }
+        .method-put { background: #cc6600; }
+        .method-delete { background: #cc0000; }
+        .endpoint-path {
+            font-family: 'Courier New', monospace;
+            color: #ce9178;
+            margin: 8px 0;
+        }
+        .endpoint-status { margin-top: 10px; padding-top: 10px; border-top: 1px solid #3c3c3c; font-size: 12px; }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .status-badge.ok { background: #4ec9b0; color: #000; }
+        .status-badge.fail { background: #f48771; color: #000; }
+        .status-badge.pending { background: #666; color: #fff; }
+        .endpoint-error { color: #f48771; font-size: 11px; margin-top: 5px; }
+        .endpoint-time { color: #888; font-size: 11px; margin-top: 5px; }
+        .nav-links {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #252526;
+            border: 1px solid #3c3c3c;
+            border-radius: 4px;
+        }
+        .nav-links a {
+            color: #007acc;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 13px;
+        }
+        .nav-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-links">
+            <a href="/all-endpoints">📊 All Endpoints</a>
+            <a href="/public">🌍 Public REST</a>
+            <a href="/private" style="color: #f48771; font-weight: bold;">🔒 Private REST</a>
+            <a href="/websocket">🌐 WebSocket</a>
+        </div>
+
+        <div class="header">
+            <h1>🔒 Private REST API Test</h1>
+            <p>Account & Trading endpoints (authentication required)</p>
+        </div>
+
+        <div class="auth-box">
+            <div>
+                <label>API Key:</label>
+                <input type="password" id="api-key" placeholder="Paste your API key" style="width: 300px;">
+                <label>API Secret:</label>
+                <input type="password" id="api-secret" placeholder="Paste your API secret" style="width: 300px;">
+                <button class="btn btn-secondary" onclick="saveCredentials()">💾 Save</button>
+                <span id="auth-status" style="margin-left: 10px; color: #888; font-size: 12px;"></span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="btn-test">▶ Test All</button>
+            <button class="btn btn-secondary" id="btn-clear">🗑 Clear Results</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-label">Total</div>
+                <div class="stat-value" id="stat-total">-</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">✓ Pass</div>
+                <div class="stat-value ok" id="stat-ok">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">✗ Fail</div>
+                <div class="stat-value fail" id="stat-fail">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">⏳ Pending</div>
+                <div class="stat-value pending" id="stat-pending">0</div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px; padding: 10px; background: #252526; border-radius: 4px; color: #888; font-size: 12px;">
+            Status: <span id="test-status">Ready</span>
+        </div>
+
+        <div class="endpoints-grid" id="endpoints-grid"></div>
+    </div>
+
+    <script>
+        const PRIVATE_ENDPOINTS = [
+            // 💰 ACCOUNT API (2)
+            { method: 'GET', path: '/api/balance', category: 'Account', description: 'Get account balance' },
+            { method: 'GET', path: '/api/uHistory', category: 'Account', description: 'Get user trade history' },
+
+            // 📊 TRADING API (8)
+            { method: 'POST', path: '/api/create', category: 'Trading', description: 'Create order' },
+            { method: 'GET', path: '/api/open', category: 'Trading', description: 'Get open orders' },
+            { method: 'GET', path: '/api/orderHistory', category: 'Trading', description: 'Get order history' },
+            { method: 'GET', path: '/api/order', category: 'Trading', description: 'Get order details' },
+            { method: 'DELETE', path: '/api/cancel', category: 'Trading', description: 'Cancel order', knownIssue: true },
+            { method: 'PUT', path: '/api/modify', category: 'Trading', description: 'Modify order', knownIssue: true },
+            { method: 'DELETE', path: '/order/cancel-all', category: 'Trading', description: 'Cancel all orders', knownIssue: true },
+            { method: 'GET', path: '/api/balances', category: 'Account', description: 'Get all account balances' },
+        ];
+
+        let testResults = {};
+        let createdOrderId = null;  // Store order ID for cancel/modify tests
+
+        document.getElementById('stat-total').textContent = PRIVATE_ENDPOINTS.length;
+        document.getElementById('stat-pending').textContent = PRIVATE_ENDPOINTS.length;
+        loadCredentials();
+        renderEndpoints();
+
+        document.getElementById('btn-test').addEventListener('click', testAll);
+        document.getElementById('btn-clear').addEventListener('click', clearResults);
+
+        function saveCredentials() {
+            const apiKey = document.getElementById('api-key').value;
+            const apiSecret = document.getElementById('api-secret').value;
+
+            if (!apiKey || !apiSecret) {
+                alert('Please enter both API key and secret');
+                return;
+            }
+
+            localStorage.setItem('test_api_key', apiKey);
+            localStorage.setItem('test_api_secret', apiSecret);
+            document.getElementById('auth-status').textContent = '✓ Credentials saved';
+            document.getElementById('auth-status').style.color = '#4ec9b0';
+        }
+
+        function loadCredentials() {
+            const apiKey = localStorage.getItem('test_api_key');
+            const apiSecret = localStorage.getItem('test_api_secret');
+
+            if (apiKey && apiSecret) {
+                document.getElementById('api-key').value = apiKey;
+                document.getElementById('api-secret').value = apiSecret;
+                document.getElementById('auth-status').textContent = '✓ Loaded';
+                document.getElementById('auth-status').style.color = '#4ec9b0';
+            }
+        }
+
+        function renderEndpoints() {
+            const grid = document.getElementById('endpoints-grid');
+            grid.innerHTML = '';
+
+            PRIVATE_ENDPOINTS.forEach((endpoint, idx) => {
+                const result = testResults[idx];
+                const card = document.createElement('div');
+
+                // Known issues show as warning, not fail
+                const displayStatus = (endpoint.knownIssue && result?.status === 'fail') ? 'warn' : (result?.status || 'pending');
+                card.className = `endpoint-card ${displayStatus}`;
+
+                const methodClass = `method-${endpoint.method.toLowerCase()}`;
+                let statusBadge;
+                if (endpoint.knownIssue && result?.status === 'fail') {
+                    statusBadge = `<span class="status-badge" style="background: #ff9800; color: #000;">⚠️ KNOWN ISSUE</span>`;
+                } else if (result) {
+                    statusBadge = `<span class="status-badge ${result.status}">${result.status === 'ok' ? '✓ PASS' : '✗ FAIL'}</span>`;
+                } else {
+                    statusBadge = `<span class="status-badge pending">⏳ Pending</span>`;
+                }
+
+                let html = `
+                    <div style="margin-bottom: 10px;">
+                        <span class="endpoint-method ${methodClass}">${endpoint.method}</span>
+                        <span style="color: #888; font-size: 12px;">${endpoint.category}</span>
+                    </div>
+                    <div class="endpoint-path">${endpoint.path}</div>
+                    <div style="color: #888; font-size: 12px;">${endpoint.description}</div>
+                    <div class="endpoint-status">${statusBadge}</div>
+                `;
+
+                if (result) {
+                    html += `<div class="endpoint-time">⏱ ${result.time}ms</div>`;
+                    if (result.status === 'fail') {
+                        html += `<div class="endpoint-error">❌ ${result.error}</div>`;
+                    }
+                }
+
+                card.innerHTML = html;
+                grid.appendChild(card);
+            });
+        }
+
+        async function testAll() {
+            const apiKey = localStorage.getItem('test_api_key');
+            const apiSecret = localStorage.getItem('test_api_secret');
+
+            if (!apiKey || !apiSecret) {
+                alert('Please save API credentials first');
+                return;
+            }
+
+            const btn = document.getElementById('btn-test');
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+
+            createdOrderId = null;
+
+            // Test order: create order first, then dependent tests
+            const testOrder = [
+                2,  // POST /api/create - must run first to get OrderId
+                4,  // GET /api/orderHistory
+                5,  // GET /api/order
+                6,  // DELETE /api/cancel - uses created order
+                7,  // PUT /api/modify - uses created order
+                8,  // DELETE /order/cancel-all
+                0,  // GET /api/balance
+                1,  // GET /api/uHistory
+                3,  // GET /api/open
+                9,  // GET /api/balances
+            ];
+
+            let tested = 0;
+            for (const idx of testOrder) {
+                const endpoint = PRIVATE_ENDPOINTS[idx];
+                tested++;
+                document.getElementById('test-status').textContent = `Testing ${tested}/${PRIVATE_ENDPOINTS.length}... (${endpoint.method} ${endpoint.path})`;
+                await testEndpoint(idx, endpoint, { apiKey, apiSecret });
+                await new Promise(r => setTimeout(r, 2000));
+            }
+
+            updateStats();
+            renderEndpoints();
+            btn.disabled = false;
+            btn.textContent = '▶ Test All';
+            document.getElementById('test-status').textContent = 'Testing complete!';
+        }
+
+        async function testEndpoint(idx, endpoint, auth, retryCount = 0) {
+            const maxRetries = 2;
+            const startTime = Date.now();
+
+            try {
+                console.log(`[${retryCount + 1}] Testing: ${endpoint.method} ${endpoint.path}`);
+
+                // Build endpoint for dependent tests
+                let epToTest = { ...endpoint };
+
+                // For cancel and modify, inject the created order ID as query param
+                if ((endpoint.path === '/api/cancel' || endpoint.path === '/api/modify') && createdOrderId) {
+                    console.log(`✓ Using created OrderId: ${createdOrderId}`);
+                    if (endpoint.path === '/api/cancel') {
+                        // Add orderId as query parameter
+                        epToTest = { ...endpoint, query: { orderId: createdOrderId } };
+                    } else if (endpoint.path === '/api/modify') {
+                        // Add OrderId to payload
+                        epToTest = { ...endpoint, modifyOrderId: createdOrderId };
+                    }
+                } else if ((endpoint.path === '/api/cancel' || endpoint.path === '/api/modify') && !createdOrderId) {
+                    console.log(`⚠ WARNING: No OrderId available for ${endpoint.path}`);
+                }
+
+                const response = await fetch('/test-single-endpoint', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ endpoint: epToTest, auth })
+                });
+
+                const time = Date.now() - startTime;
+                const data = await response.json();
+
+                console.log(`Response: ${data.status} (${time}ms)`, {
+                    error: data.error,
+                    httpStatus: data.httpStatus,
+                    sample: data.sample ? data.sample.substring(0, 50) : null
+                });
+
+                // Extract OrderId from create response for dependent tests
+                if (endpoint.path === '/api/create' && data.status === 'ok' && data.sample) {
+                    try {
+                        const sampleStr = data.sample;
+                        console.log(`Sample data: ${sampleStr}`);
+
+                        // Try multiple patterns for OrderId
+                        let match = sampleStr.match(/"OrderId"\s*:\s*"([^"]+)"/);
+                        if (!match) match = sampleStr.match(/"Id"\s*:\s*"([^"]+)"/);
+
+                        if (match && match[1]) {
+                            createdOrderId = match[1];
+                            console.log(`✓✓✓ Extracted OrderId: ${createdOrderId}`);
+                        } else {
+                            console.log(`⚠ Could not extract OrderId. Sample: ${sampleStr.substring(0, 100)}`);
+                        }
+                    } catch (e) {
+                        console.log(`Error extracting OrderId: ${e.message}`);
+                    }
+                }
+
+                if (data.status === 'ok') {
+                    testResults[idx] = { status: 'ok', time: data.time };
+                } else {
+                    if (retryCount < maxRetries) {
+                        console.log(`Retrying (${retryCount + 1}/${maxRetries})...`);
+                        await new Promise(r => setTimeout(r, 1000));
+                        return testEndpoint(idx, endpoint, auth, retryCount + 1);
+                    }
+                    testResults[idx] = { status: 'fail', time: data.time, error: data.error || 'Unknown error' };
+                }
+            } catch (err) {
+                const time = Date.now() - startTime;
+                console.error(`Catch error: ${err.message}`);
+                if (retryCount < maxRetries) {
+                    console.log(`Retrying after error (${retryCount + 1}/${maxRetries})...`);
+                    await new Promise(r => setTimeout(r, 1000));
+                    return testEndpoint(idx, endpoint, auth, retryCount + 1);
+                }
+                testResults[idx] = { status: 'fail', time, error: err.message };
+            }
+        }
+
+        function updateStats() {
+            const total = PRIVATE_ENDPOINTS.length;
+            const ok = Object.values(testResults).filter(r => r.status === 'ok').length;
+            const fail = Object.values(testResults).filter(r => r.status === 'fail').length;
+            const pending = total - ok - fail;
+
+            document.getElementById('stat-ok').textContent = ok;
+            document.getElementById('stat-fail').textContent = fail;
+            document.getElementById('stat-pending').textContent = pending;
+        }
+
+        function clearResults() {
+            testResults = {};
+            createdOrderId = null;
+            document.getElementById('stat-ok').textContent = '0';
+            document.getElementById('stat-fail').textContent = '0';
+            document.getElementById('stat-pending').textContent = PRIVATE_ENDPOINTS.length;
+            document.getElementById('test-status').textContent = 'Ready';
+            renderEndpoints();
+        }
+    </script>
+</body>
+</html>
