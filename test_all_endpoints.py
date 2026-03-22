@@ -194,10 +194,12 @@ class LCXTester:
             params={"pair": "LCX/USDC", "offset": 0}
         )
 
+        now = int(time.time())
+        yesterday = now - 86400
         self.test_endpoint(
-            "GET /v1/market/kline (LCX/USDC)",
+            "GET /v1/market/kline (LCX/USDC) [from-to required]",
             "GET", f"{self.kline_url}/v1/market/kline", auth_required=False,
-            params={"pair": "LCX/USDC", "resolution": "1h", "limit": 10}
+            params={"pair": "LCX/USDC", "resolution": "1h", "from": yesterday, "to": now}
         )
 
         # ===== Account Endpoints (2) =====
@@ -236,23 +238,23 @@ class LCXTester:
 
         # Get open orders
         self.test_endpoint(
-            "GET /api/open (offset=0)",
+            "GET /api/open (offset=1)",
             "GET", "/api/open", auth_required=True,
-            params={"offset": 0}
+            params={"offset": 1}
         )
 
         # Get order history
         self.test_endpoint(
-            "GET /api/orderHistory",
+            "GET /api/orderHistory (offset=1)",
             "GET", "/api/orderHistory", auth_required=True,
-            params={"offset": 0}
+            params={"offset": 1}
         )
 
         # Get user history
         self.test_endpoint(
-            "GET /api/uHistory",
+            "GET /api/uHistory (offset=1)",
             "GET", "/api/uHistory", auth_required=True,
-            params={"offset": 0}
+            params={"offset": 1}
         )
 
         # Cancel order (if we have an order ID)
@@ -270,24 +272,27 @@ class LCXTester:
         print(f"\n{Colors.BOLD}❌ PROBLEM ENDPOINTS (Known Failures){Colors.RESET}")
         print(f"{Colors.BOLD}{'-'*70}{Colors.RESET}\n")
 
-        dummy_order_id = "0d6d3671-06a7-4061-b19c-159167edb0fc"
+        # GET /api/order requires a real OrderId - skip if not available
+        if self.test_order_id:
+            self.test_endpoint(
+                "GET /api/order (Real OrderId)",
+                "GET", "/api/order", auth_required=True,
+                params={"OrderId": self.test_order_id}, expected_status=200
+            )
+        else:
+            print(f"{Colors.WARN}⚠️  SKIP{Colors.RESET} - GET /api/order (no real OrderId)")
+            self.results['total'] += 1
 
         self.test_endpoint(
-            "GET /api/order (NOT IMPLEMENTED)",
-            "GET", "/api/order", auth_required=True,
-            params={"orderId": dummy_order_id}, expected_status=404
-        )
-
-        self.test_endpoint(
-            "PUT /api/modify (NOT IMPLEMENTED)",
+            "PUT /api/modify (Price < 0.0675)",
             "PUT", "/api/modify", auth_required=True,
-            payload={"orderId": dummy_order_id, "Price": 2}, expected_status=404
+            payload={"OrderId": dummy_order_id, "Price": 0.05, "Amount": 20, "OrderType": "LIMIT", "Side": "SELL"}, expected_status=404
         )
 
         self.test_endpoint(
-            "DELETE /order/cancel-all (NOT IMPLEMENTED)",
+            "DELETE /order/cancel-all (orderIds array)",
             "DELETE", "/order/cancel-all", auth_required=True,
-            expected_status=404
+            payload={"orderIds": [dummy_order_id]}, expected_status=200
         )
 
         # Print summary
